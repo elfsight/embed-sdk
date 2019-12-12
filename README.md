@@ -165,15 +165,15 @@ Example:
 ```
 
 ### 5. Link Elfsight Affiliate Program 
-Affiliate Program Description, [link](https://elfsight.com/affiliate-program/)
+Earn a termless 30% with each paid subscription made via your integration.
 
-For set up the referral parameter use the method:
+1. Sign up to the program at [https://elfsight.com/affiliate-program/](https://elfsight.com/affiliate-program/)
+2. Wait for confirmation from Elfsight
+3. Get your referral ID and pass it to SDK right after adding it to your platform:
 
 ```js
-ElfsightEmbedSDK.setReferral('');
-``` 
- 
-Right after including SDK
+ElfsightEmbedSDK.setReferral('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+```
 
 ## UI Components
 
@@ -186,6 +186,7 @@ This component displays the complete list of Elfsight widgets. Filter by categor
 <details>
 <summary><code>ElfsightEmbedSDK.displayCatalog(container, callback, options)</code></summary>
 
+####
 ```js
 const container = document.querySelector('#elfsight-catalog-container');
 const callback = function(response) {
@@ -202,6 +203,7 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 <details>
 <summary>OPTIONS</summary>
 
+####
 | option              | type    | default        | description                                |
 | --------------------| ------- | -------------- | ------------------------------------------ |
 | `title`             | string  | `'Add Widget'` |                                            |
