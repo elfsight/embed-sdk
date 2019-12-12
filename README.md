@@ -54,7 +54,7 @@ You can add Embed SDK in two ways:
 <script src="https://elfsight.com/embed-sdk.js"></script>
 ```
 
-* As npm package
+* As npm package:
 
 ```bash
 npm install --save @elfsight/embed-sdk
@@ -141,7 +141,7 @@ Example:
 ```html
 <div id="widget-panel-container"></div>
 
-<!-- Here's you added the widget in previous step -->
+<!-- Here's the widget you've added in previous step -->
 <div id="widget-container">
     <div class="elfsight-app-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></div>
 </div>
@@ -157,7 +157,7 @@ Example:
         }
     };
     const options = {
-        widgetId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' // get the stored user widget id from your database
+        widgetId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' // Get the user widget id from your database
     };
 
     ElfsightEmbedSDK.displayPanel(container, callbacks, options);
@@ -165,7 +165,7 @@ Example:
 ```
 
 ### 5. Link Elfsight Affiliate Program 
-Earn a termless 30% with each paid subscription made via your integration.
+Earn a termless 30% with each paid subscription made via your integration. Learn more about the [program](https://elfsight.com/affiliate-program/).
 
 1. Sign up to the program at [https://elfsight.com/affiliate-program/](https://elfsight.com/affiliate-program/)
 2. Wait for confirmation from Elfsight
