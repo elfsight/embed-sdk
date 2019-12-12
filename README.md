@@ -156,7 +156,7 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 </details>
 
 <details>
-<summary>Options</summary>
+<summary>OPTIONS</summary>
 
 ####
 | option              | type    | default        | description                                |
@@ -196,14 +196,16 @@ ElfsightEmbedSDK.displayCard(container, callback, options);
 </details>
 
 <details>
-<summary>Options</summary>
+<summary>OPTIONS</summary>
 
 ####
-| option       | type    | default | description                         |
-| ------------ | ------- | ------- | ----------------------------------- |
-| `appAlias`   | string  | `''`    |                                     |
-| `buttonText` | string  | `'ADD'` | Set up the text for button on hover |
-| `buttonIcon` | string  | `'add'` | Set up the text for button on hover |
+| option          | type    | default | description                         |
+| --------------- | ------- | ------- | ----------------------------------- |
+| `appAlias`      | string  | `''`    |                                     |
+| `buttonText`    | string  | `'ADD'` | Set up the text for button on hover |
+| `buttonIcon`    | string  | `'add'` | Set up the icon for button on hover |
+| `promo`         | boolean | `false` |                                     |
+| `promoReferral` | string  | `''`    |                                     |
 </details>
 
 ### Widget Management Panel
@@ -235,7 +237,7 @@ ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 </details>
 
 <details>
-<summary>Options</summary>
+<summary>OPTIONS</summary>
 
 ####
 | option     | type    | default     | description                                 
@@ -245,9 +247,9 @@ ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 | `color`    | string  | `'#fafafa'` | Panel background color                     |
 
 `size` option available values:
- * big
- * medium
- * small
+ * `'big'`
+ * `'medium'`
+ * `'small'`
 </details>
 
 ### Buttons
@@ -274,12 +276,12 @@ ElfsightEmbedSDK.displayButton(container, callback, options);
 </details>
 
 <details>
-<summary>Options</summary>
+<summary>OPTIONS</summary>
 
 ####
 | option      | type    | default               | description                                        |
 | ----------- | ------- | --------------------- | -------------------------------------------------- |
-| `type`      | string  | `'create'`            | **Required**.                                      |
+| `type`      | string  | `'create'`            | **Required**. Indicates the button action.         |
 | `widgetId`  | string  | `null`                | **Required** for button types 'edit' and 'remove'. |
 | `size`      | string  | `'big'`               |                                                    |
 | `colors`    | array   | `['#f93262', '#fff']` |                                                    |
@@ -387,16 +389,17 @@ ElfsightEmbedSDK.displayPreview(container, options);
 </details>
 
 <details>
-<summary>Options</summary>
+<summary>OPTIONS</summary>
 
 ####
-| option     | type    | default     | description                                 
-| ---------- | ------- | ----------- | ------------------------------------------ |
-| `appAlias` | string  | `null`      | **Required**. Indicates the managed widget |
-| `size`     | string  | `'big'`     |                                            |
-| `color`    | string  | `'#fafafa'` | Panel background color                     |
+| option          | type    | default     | description                                 
+| --------------- | ------- | ----------- | ------------------------------------------------- |
+| `appAlias`      | string  | `null`      | **Required**. Indicates the previewed application |
+| `ref`           | string  | `''`        | Set up your referral id to earn money!            |
+| `hideTemplates` | boolean | `false`     | Enable/Disable templates in preview               |
+| `templateId`    | string  | `null`      |                                                   |
 
-`category` option available values can be obtained from [public API request](https://apps.elfsight.com/api/v1/public/applications)
+`templateId` option available values can be obtained from [public API request](https://apps.elfsight.com/api/v1/public/applications)
 </details>
 
 
@@ -468,7 +471,9 @@ ElfsightEmbedSDK.editWidget(widgetId).then(callback);
 ```
 </details>
 
-### Open the widget remove
+### Call the widget remove
+
+Method only shows the confirm, all removing logic you manage in the callback. 
 
 <details>
 <summary><code>ElfsightEmbedSDK.removeWidget(widgetId).then(callback)</code></summary>
