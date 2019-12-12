@@ -69,9 +69,9 @@ import * as ElfsightEmbedSDK from '@elfsight/embed-sdk';
 ### 2. Display Applications Catalog
 Output an Catalog with component [Applications Catalog](#applications-catalog):
 
- * 2.1 Set the `container`, there is catalog will be rendered 
- * 2.2 Set the `callback`, what is need to do, when user created the widget 
- * 2.3 Set up the additional `options` for appearance
+1. Set the `container`, there is catalog will be rendered 
+2. Set the `callback`, what is need to do, when user created the widget 
+3. Set up the additional `options` for appearance
 
 ```js
 const container = document.querySelector('#elfsight-catalog-container');
@@ -106,13 +106,24 @@ Save the widget
 #### 3.2. Display widget for user
 Show the widget
 
-Example:
+Extend the example from previous step:
 
 ```html
 <div id="widget-container"></div>
 
 <script>
-    ElfsightEmbedSDK.
+    const widgetContainer = document.getElementById('widget-container');
+    
+    const container = document.querySelector('#elfsight-catalog-container');
+    const callback = (widget) => {
+        // for example output the widget into container above
+        widgetContainer.appendChild(widget.element);
+    };
+    const options = {
+    
+    };
+    
+    ElfsightEmbedSDK.displayCatalog(container, callback, options);
 </script>
 ```
 
@@ -123,10 +134,25 @@ Example:
 
 ```html
 <div id="widget-panel-container"></div>
-<div id="widget-container"></div>
+<div id="widget-container">
+    <div class="elfsight-app-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></div>
+</div>
 
 <script>
-    ElfsightEmbedSDK.displa
+    const panelContainer = document.getElementById('widget-panel-container');
+    const callbacks = {
+        onEdit: () => {
+            console.log('edited!')   
+        },
+        onRemove: () => {
+            console.log('removed!')   
+        }
+    };
+    const options = {
+        widgetId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' // your already save the widget id in the DB?
+    };
+
+    ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 </script>
 ```
 
