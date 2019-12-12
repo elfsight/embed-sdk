@@ -370,7 +370,7 @@ ElfsightEmbedSDK.displayRemoveButton(container, callback, options);
 DESCRIPTION
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/preview.jpg)
-[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.png)](https://jsfiddle.net/elfsight/3vzabkw7/)
+[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.png)](https://jsfiddle.net/elfsight/fmdsL54h/)
 
 <details>
 <summary><code>ElfsightEmbedSDK.displayPreview(container, options)</code></summary>
