@@ -11,7 +11,7 @@ Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight
 
  * [1. Add SDK](#1-add-sdk)
  
- * [2. Display the Catalog](#2-display-applications-catalog)
+ * [2. Embed the widgets](#2-embed-the-widgets)
  
  * [3. Operate the widget](#3-operate-the-widget)
  
@@ -66,8 +66,7 @@ Next, you’ll need to import the Embed package. If you’re using CDN, you don�
 import * as ElfsightEmbedSDK from '@elfsight/embed-sdk';
 ```
 
-### 2. Display Applications Catalog
-
+### 2. Embed the widgets
 Depending on your use-case, you can embed the widgets via the various components and API provided in the SDK. Let’s consider an exmaple of embedding the [Apps Catalog](#apps-catalog) component.
 
 Use the code below to embed the component to the right place in your platform:
@@ -88,10 +87,8 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 2. Pass the `callback` function, that will be called with the data about the user’s configured widget.
 3. Configure component `options`, if necessary.
 
-### 3. Operate Widget
-DESCRIPTION
-
-When user creates a widget, use receive in callback the following data:
+### 3. Process the user’s configured widget
+After a user’s widget is configured, it will call the callback function described in point 2, with the following data:
 
 ```js
 {
@@ -103,11 +100,15 @@ When user creates a widget, use receive in callback the following data:
 }
 ```
 
-#### 3.1. Save users widget
-Save the widget
+#### 3.1. Save the widget data in your environment
+You need to save the widget data in your database in order to be able to do the following:
 
-#### 3.2. Display widget for user
-Show the widget
+* display the widget
+* allow the users to interact with the widget
+* embed components to manage the widget
+
+#### 3.2. Display the widget
+To display a user-configured widget you need to add the widget data element inside the callback to the place where you want to display the widget.
 
 Extend the example from previous step:
 
@@ -130,13 +131,17 @@ Extend the example from previous step:
 </script>
 ```
 
-### 4. Display Widget Management Panel
-For the user to be able to control his widget, you need to output the Widget Management Panel with component [Widget Management Panel](#widget-management-panel) next to widget in your backend.
+Please, make sure that you’ve added Embed SDK to the page with the widget.
+
+### 4. Allows the users to manage their widgets
+To allow your users to edit or remove their widgets, Elfsight Embed SDK provides [Edit](#edit-button) and [Remove](#remove-button) buttons or [Widget Management Panel](#widget-management-panel), that allows for all possible widget manipulations. To display the Widget Management Panel, add the code below next to the widget element:
 
 Example:
 
 ```html
 <div id="widget-panel-container"></div>
+
+<!-- Here's you added the widget in previous step -->
 <div id="widget-container">
     <div class="elfsight-app-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></div>
 </div>
@@ -152,14 +157,14 @@ Example:
         }
     };
     const options = {
-        widgetId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' // your already save the widget id in the DB?
+        widgetId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' // get the stored user widget id from your database
     };
 
     ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 </script>
 ```
 
-### 5. Affiliate Program
+### 5. Link Elfsight Affiliate Program 
 Affiliate Program Description, [link](https://elfsight.com/affiliate-program/)
 
 For set up the referral parameter use the method:
@@ -181,7 +186,6 @@ This component displays the complete list of Elfsight widgets. Filter by categor
 <details>
 <summary><code>ElfsightEmbedSDK.displayCatalog(container, callback, options)</code></summary>
 
-####
 ```js
 const container = document.querySelector('#elfsight-catalog-container');
 const callback = function(response) {
@@ -198,7 +202,6 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 <details>
 <summary>OPTIONS</summary>
 
-####
 | option              | type    | default        | description                                |
 | --------------------| ------- | -------------- | ------------------------------------------ |
 | `title`             | string  | `'Add Widget'` |                                            |
