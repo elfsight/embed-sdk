@@ -13,11 +13,11 @@ Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight
  
  * [2. Embed the widgets](#2-embed-the-widgets)
  
- * [3. Operate the widget](#3-operate-the-widget)
+ * [3. Process the user’s configured widget](#3-process-the-users-configured-widget)
  
- * [4. Widget management](#4-widget-management)
+ * [4. Allows the users to manage their widgets](#4-allows-the-users-to-manage-their-widgets)
  
- * [5. Affiliate Program](#5-affiliate-program)
+ * [5. Link Elfsight Affiliate Program](#5-link-elfsight-affiliate-program)
 
 [UI Components](#ui-components)
 
