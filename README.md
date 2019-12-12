@@ -67,11 +67,10 @@ import * as ElfsightEmbedSDK from '@elfsight/embed-sdk';
 ```
 
 ### 2. Display Applications Catalog
-Output an Catalog with component [Applications Catalog](#applications-catalog):
 
-1. Set the `container`, there is catalog will be rendered 
-2. Set the `callback`, what is need to do, when user created the widget 
-3. Set up the additional `options` for appearance
+Depending on your use-case, you can embed the widgets via the various components and API provided in the SDK. Let’s consider an exmaple of embedding the [Apps Catalog](#apps-catalog) component.
+
+Use the code below to embed the component to the right place in your platform:
 
 ```js
 const container = document.querySelector('#elfsight-catalog-container');
@@ -84,6 +83,10 @@ const options = {
 
 ElfsightEmbedSDK.displayCatalog(container, callback, options);
 ```
+
+1. Set the `container` to render the catalog to.
+2. Pass the `callback` function, that will be called with the data about the user’s configured widget.
+3. Configure component `options`, if necessary.
 
 ### 3. Operate Widget
 DESCRIPTION
