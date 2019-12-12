@@ -165,7 +165,7 @@ Example:
 ```
 
 ### 5. Link Elfsight Affiliate Program 
-Earn a termless 30% with each paid subscription made via your integration. Learn more about the [program](https://elfsight.com/affiliate-program/).
+Earn a termless 30% with each paid subscription made via your integration. Learn more about the [affiliate program](https://elfsight.com/affiliate-program/).
 
 1. Sign up to the program at [https://elfsight.com/affiliate-program/](https://elfsight.com/affiliate-program/)
 2. Wait for confirmation from Elfsight
