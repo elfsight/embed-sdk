@@ -1,6 +1,6 @@
 {
 	"name": "@elfsight/embed-sdk",
-	"version": "0.1.10",
+	"version": "0.1.11",
 	"description": "Elfsight SDK to embedding portal in your environment",
 	"main": "lib/embed-sdk.js",
 	"scripts": {

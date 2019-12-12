@@ -133,7 +133,7 @@ Right after including SDK
 ## UI Components
 
 ### Applications Catalog
-DESCRIPTION
+This component displays the complete list of Elfsight widgets. Filter by category and search functionality are also provided. Configure this component in one of two ways: let your users open an apps’ editor on a click on its card, or direct them to our website.
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/catalog.jpg)
 [![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/3vzabkw7/)
@@ -173,7 +173,7 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 </details>
 
 ### Application Card
-DESCRIPTION
+Embed the card component to feature a specific Elfsight app. The editor where users can configure it will open up on a click.
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/card.jpg)
 [![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/yrdm45e0/)
@@ -209,7 +209,7 @@ ElfsightEmbedSDK.displayCard(container, callback, options);
 </details>
 
 ### Widget Management Panel
-DESCRIPTION
+Add this panel alongside the user’s widget. This will enable the user to manage the widget (edit, remove, etc).
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/panel.jpg)
 [![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/t63a9vcq/)
@@ -253,7 +253,10 @@ ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 </details>
 
 ### Buttons
-DESCRIPTION
+This component includes 3 buttons: 
+* **Add** - opens the app catalog to let users choose an app, 
+* **Edit** - opens the widget eidtor window, 
+* **Remove** - remove widget from website.
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button.jpg)
 [![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/oj168u3f/)
@@ -404,9 +407,7 @@ ElfsightEmbedSDK.displayPreview(container, options);
 
 
 ## API Methods
-DESCRIPTION 
-
-The following API methods are used in UI components, but you can use it directly to build UI yourself
+Use the API endpoints to create your own components or interface to interact with Elfsight widgets.
 
 ### Get the applications list
 
