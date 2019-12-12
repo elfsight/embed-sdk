@@ -136,7 +136,7 @@ Right after including SDK
 DESCRIPTION
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/catalog.jpg)
-[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg)](https://jsfiddle.net/elfsight/3vzabkw7/)
+[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/3vzabkw7/)
 
 <details>
 <summary><code>ElfsightEmbedSDK.displayCatalog(container, callback, options)</code></summary>
@@ -176,7 +176,7 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 DESCRIPTION
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/card.jpg)
-[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.png)](https://jsfiddle.net/elfsight/yrdm45e0/)
+[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/yrdm45e0/)
 
 <details>
 <summary><code>ElfsightEmbedSDK.displayCard(container, callback, options)</code></summary>
@@ -212,7 +212,7 @@ ElfsightEmbedSDK.displayCard(container, callback, options);
 DESCRIPTION
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/panel.jpg)
-[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.png)](https://jsfiddle.net/elfsight/t63a9vcq/)
+[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/t63a9vcq/)
 
 <details>
 <summary><code>ElfsightEmbedSDK.displayPanel(container, callbacks, options)</code></summary>
@@ -256,7 +256,7 @@ ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 DESCRIPTION
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button.jpg)
-[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.png)](https://jsfiddle.net/elfsight/oj168u3f/)
+[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/oj168u3f/)
 
 <details>
 <summary><code>ElfsightEmbedSDK.displayButton(container, callback, options)</code></summary>
@@ -372,7 +372,7 @@ ElfsightEmbedSDK.displayRemoveButton(container, callback, options);
 DESCRIPTION
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/preview.jpg)
-[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.png)](https://jsfiddle.net/elfsight/fmdsL54h/)
+[![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/fmdsL54h/)
 
 <details>
 <summary><code>ElfsightEmbedSDK.displayPreview(container, options)</code></summary>
