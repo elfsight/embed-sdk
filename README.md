@@ -46,25 +46,24 @@ Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight
 ### 1. Add SDK
 First of all, add Elfsight Embed SDK to your environment. Please, make sure that you’ve added it both to the area where a users will configure their widgets and to the area where it has to be displayed.
 
-* Include our SDK throught our CDN
+You can add Embed SDK in two ways:
+
+* Through our CDN:
 
 ```html
 <script src="https://elfsight.com/embed-sdk.js"></script>
 ```
 
-* Include out package from npmjs
+* As npm package
 
 ```bash
 npm install --save @elfsight/embed-sdk
 ```
 
-And use as dependency
+Next, you’ll need to import the Embed package. If you’re using CDN, you don’t have to import the package.
 
 ```js
-// ES6
 import * as ElfsightEmbedSDK from '@elfsight/embed-sdk';
-// or
-import { displayCatalog } from '@elfsight/embed-sdk';
 ```
 
 ### 2. Display Applications Catalog
