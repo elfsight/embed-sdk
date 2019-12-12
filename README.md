@@ -1,16 +1,15 @@
-# Elfsight Embedding SDK
+# Elfsight Embed SDK
 
 ![](https://img.shields.io/badge/build-passed-brightgreen?style=flat-square)
 ![](https://img.shields.io/badge/version-0.1.0-brightgreen?style=flat-square)
 
-INTRO DESCRIPTION
-
+Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight.com/widgets) catalog directly on your platform (website theme, website/page builder, etc). Social feeds, reviews, live chats, forms, galleries and e-commerce widgets offered by Elfsight will significantly extend the functionality of your platform. Embedding the catalog will let you earn even more with the [Elfsight Affiliate Program](https://elfsight.com/affiliate-program/).
 
 ## Contents
 
 [Getting Started](#getting-started)
 
- * [1. Include SDK](#1-include-sdk)
+ * [1. Add SDK](#1-add-sdk)
  
  * [2. Display the Catalog](#2-display-applications-catalog)
  
@@ -40,31 +39,23 @@ INTRO DESCRIPTION
  
  * [Open the application widget edit window](#open-edit-widget)
  
- * [Remove widget](#remove-widget)
+ * [Call Remove widget](#call-remove-widget)
 
 ## Getting Started
 
-### 1. Include SDK
-First include Elfsight Embed SDK in your environment
+### 1. Add SDK
+First of all, add Elfsight Embed SDK to your environment. Please, make sure that you’ve added it both to the area where a users will configure their widgets and to the area where it has to be displayed.
 
-#### Script?
-Include with our CDN
+* Include our SDK throught our CDN
 
 ```html
 <script src="https://elfsight.com/embed-sdk.js"></script>
 ```
 
-And use right on your page
-
-```js
-window.ElfsightEmbedSDK.METHOD()
-```
-
-#### Package Manager
-Include out package from npmjs
+* Include out package from npmjs
 
 ```bash
-npm install --save-dev @elfsight/embed-sdk
+npm install --save @elfsight/embed-sdk
 ```
 
 And use as dependency
@@ -79,9 +70,9 @@ import { displayCatalog } from '@elfsight/embed-sdk';
 ### 2. Display Applications Catalog
 Output an Catalog with component [Applications Catalog](#applications-catalog):
 
- * Set the `container`, there is catalog will be rendered 
- * Set the `callback`, what is need to do, when user created the widget 
- * Set up the additional `options` for appearance
+ * 2.1 Set the `container`, there is catalog will be rendered 
+ * 2.2 Set the `callback`, what is need to do, when user created the widget 
+ * 2.3 Set up the additional `options` for appearance
 
 ```js
 const container = document.querySelector('#elfsight-catalog-container');
@@ -116,8 +107,29 @@ Save the widget
 #### 3.2. Display widget for user
 Show the widget
 
+Example:
+
+```html
+<div id="widget-container"></div>
+
+<script>
+    ElfsightEmbedSDK.
+</script>
+```
+
 ### 4. Display Widget Management Panel
 For the user to be able to control his widget, you need to output the Widget Management Panel with component [Widget Management Panel](#widget-management-panel) next to widget in your backend.
+
+Example:
+
+```html
+<div id="widget-panel-container"></div>
+<div id="widget-container"></div>
+
+<script>
+    ElfsightEmbedSDK.displa
+</script>
+```
 
 ### 5. Affiliate Program
 Affiliate Program Description, [link](https://elfsight.com/affiliate-program/)
