@@ -1,0 +1,37 @@
+{
+	"name": "@elfsight/embed-sdk",
+	"version": "0.1.9",
+	"description": "Elfsight SDK to embedding portal in your environment",
+	"main": "lib/embed-sdk.js",
+	"scripts": {
+		"dev": "webpack-dev-server --mode=development",
+		"production": "webpack --mode=production"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/elfsight/embed-sdk.git"
+	},
+	"author": "Elfsight <info@elfsight.com>",
+	"license": "ISC",
+	"homepage": "https://github.com/elfsight/embed-sdk#readme",
+	"devDependencies": {
+		"@babel/core": "^7.7.2",
+		"@babel/plugin-transform-react-jsx": "^7.7.0",
+		"@babel/polyfill": "^7.7.0",
+		"@babel/preset-env": "^7.7.1",
+		"@babel/preset-react": "^7.7.0",
+		"@svgr/webpack": "^4.3.3",
+		"babel-loader": "^8.0.6",
+		"babel-plugin-styled-components": "^1.10.6",
+		"html-to-react": "^1.4.2",
+		"preact": "^10.0.5",
+		"preact-html-converter": "^0.4.2",
+		"preact-markup": "^1.6.0",
+		"styled-components": "^4.4.1",
+		"svg-url-loader": "^3.0.2",
+		"webpack": "^4.41.2",
+		"webpack-bundle-analyzer": "^3.6.0",
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.9.0"
+	}
+}
