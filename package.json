@@ -1,7 +1,7 @@
 {
 	"name": "@elfsight/embed-sdk",
 	"version": "0.1.11",
-	"description": "Elfsight SDK to embedding portal in your environment",
+	"description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
 	"main": "lib/embed-sdk.js",
 	"scripts": {
 		"dev": "webpack-dev-server --mode=development",
@@ -13,7 +13,7 @@
 	},
 	"author": "Elfsight <info@elfsight.com>",
 	"license": "ISC",
-	"homepage": "https://github.com/elfsight/embed-sdk#readme",
+	"homepage": "https://elfsight.com/developers/",
 	"devDependencies": {
 		"@babel/core": "^7.7.2",
 		"@babel/plugin-transform-react-jsx": "^7.7.0",
