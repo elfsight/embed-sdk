@@ -1,7 +1,7 @@
-import {h} from 'preact';
+import { h } from 'preact';
 import styled from 'styled-components';
 
-import {Search} from './Search';
+import { Search } from './Search';
 
 const HeaderComponent = styled.div`
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -19,7 +19,9 @@ const HeaderTitle = styled.div`
   flex-shrink: 0;
 `;
 
-export function Header({title, searchPlaceholder, searchEnable, onSearch}) {
+export function Header({
+  title, searchPlaceholder, searchEnable, onSearch
+}) {
   return (
     <HeaderComponent>
       <HeaderTitle>{title}</HeaderTitle>

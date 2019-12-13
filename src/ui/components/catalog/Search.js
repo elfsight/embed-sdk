@@ -1,8 +1,8 @@
-import {h} from 'preact';
-import {useRef} from 'preact/hooks';
+import { h } from 'preact';
+import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
 
-import {Icon} from './../Icon';
+import { Icon } from '../Icon';
 
 const SearchComponent = styled.div`
   position: relative;
@@ -41,7 +41,7 @@ const SearchTrigger = styled.div`
   cursor: pointer;
 `;
 
-export function Search({searchPlaceholder, onSearch}) {
+export function Search({ searchPlaceholder, onSearch }) {
   const inputRef = useRef(null);
 
   const onChange = (e) => {
@@ -50,9 +50,7 @@ export function Search({searchPlaceholder, onSearch}) {
     setValue(e.target.value);
   };
 
-  const searchTrigger = () => {
-    return inputHasValue ? setValue('') : null;
-  };
+  const searchTrigger = () => (inputHasValue ? setValue('') : null);
 
   const setValue = (value) => {
     if (inputRef.current) {
@@ -62,9 +60,7 @@ export function Search({searchPlaceholder, onSearch}) {
     onSearch(value);
   };
 
-  const inputHasValue = (() => {
-    return inputRef.current && !!inputRef.current.value;
-  })();
+  const inputHasValue = (() => inputRef.current && !!inputRef.current.value)();
 
   return (
     <SearchComponent>
@@ -76,15 +72,15 @@ export function Search({searchPlaceholder, onSearch}) {
       <SearchTrigger onClick={searchTrigger}>
         {inputHasValue ? (
           <Icon
-            size='16px'
-            type='close'
-            color='#b8b8b8'
+            size="16px"
+            type="close"
+            color="#b8b8b8"
           />
         ) : (
           <Icon
-            size='16px'
-            type='search'
-            color='#b8b8b8'
+            size="16px"
+            type="search"
+            color="#b8b8b8"
           />
         )}
       </SearchTrigger>

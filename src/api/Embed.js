@@ -1,9 +1,9 @@
+import { parametrize } from '../helpers';
+
 const PAGES = {
-  'application': '/embed/<appAlias>/',
+  application: '/embed/<appAlias>/',
   'widget.edit': '/embed/undefined/edit/<widgetId>/'
 };
-
-import {parametrize} from './../helpers';
 
 const BASE_URL = 'https://apps.elfsight.com';
 const WINDOW_TARGET = 'elfsight-embed-sdk';
@@ -58,7 +58,7 @@ export class Embed {
 
     this.observeCallback = (response) => {
       const {
-        data: {event, data}
+        data: { event, data }
       } = response;
 
       if (event === message) {
@@ -93,21 +93,21 @@ export class Embed {
       size = {
         width: WINDOW_SIZES[0],
         height: WINDOW_SIZES[1]
-      },
-      location = {
-        left: (availLeft + (availWidth / 2)) - (size.width / 2),
-        top: (availTop + (availHeight / 2)) - (size.height / 2)
-      },
-      options = [
-        'width=' + size.width,
-        'height=' + size.height,
-        'menubar=no',
-        'toolbar=no',
-        'resizable=no',
-        'scrollbars=yes',
-        'left=' + location.left,
-        'top=' + location.top
-      ];
+      };
+    const location = {
+      left: (availLeft + (availWidth / 2)) - (size.width / 2),
+      top: (availTop + (availHeight / 2)) - (size.height / 2)
+    };
+    const options = [
+      `width=${size.width}`,
+      `height=${size.height}`,
+      'menubar=no',
+      'toolbar=no',
+      'resizable=no',
+      'scrollbars=yes',
+      `left=${location.left}`,
+      `top=${location.top}`
+    ];
 
     return {
       url,
@@ -116,9 +116,9 @@ export class Embed {
   }
 
   static getFullUrl(page, params = {}) {
-    const {ref, utmString, editMode} = params;
+    const { ref, utmString, editMode } = params;
 
-    return Embed.getPage(page, params) + Embed.makeQuery({ref, edit_mode: editMode}, utmString);
+    return Embed.getPage(page, params) + Embed.makeQuery({ ref, edit_mode: editMode }, utmString);
   }
 
   static getPage(entity, params = {}) {
@@ -128,7 +128,7 @@ export class Embed {
 
     let page = PAGES[entity];
 
-    for (let key in params) {
+    for (const key in params) {
       if (params.hasOwnProperty(key)) {
         page = page.replace(`<${key}>`, params[key]);
       }
@@ -138,7 +138,7 @@ export class Embed {
   }
 
   static makeQuery(params, utmString = DEFAULT_UTM) {
-    const query = parametrize(params) + `&${utmString}`;
+    const query = `${parametrize(params)}&${utmString}`;
 
     return query ? `?${query}` : '';
   }

@@ -63,7 +63,7 @@ npm install --save @elfsight/embed-sdk
 Next, you’ll need to import the Embed package. If you’re using CDN, you don’t have to import the package.
 
 ```js
-import * as ElfsightEmbedSDK from '@elfsight/embed-sdk';
+import { ElfsightEmbedSDK } from '@elfsight/embed-sdk';
 ```
 
 ### 2. Embed the widgets

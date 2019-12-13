@@ -1,5 +1,5 @@
-import {UI} from './UI';
+import { UI } from './UI';
 
 export {
   UI
-}
+};

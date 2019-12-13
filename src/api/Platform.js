@@ -1,6 +1,6 @@
-import {onReady} from './../helpers';
+import { onReady } from '../helpers';
 
-const PLATFORM_URL = `https://apps.elfsight.com/p/platform.js`;
+const PLATFORM_URL = 'https://apps.elfsight.com/p/platform.js';
 
 export class Platform {
   static init() {

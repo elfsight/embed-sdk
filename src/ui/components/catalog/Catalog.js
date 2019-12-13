@@ -1,11 +1,11 @@
-import {h} from 'preact';
-import {useState} from 'preact/hooks';
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import styled from 'styled-components';
 
-import {Card} from './Card';
-import {Categories} from './Categories';
-import {Header} from './Header';
-import {validate} from '../../../helpers';
+import { Card } from './Card';
+import { Categories } from './Categories';
+import { Header } from './Header';
+import { validate } from '../../../helpers';
 
 const ListComponent = styled.div`
   min-width: 280px;
@@ -33,7 +33,7 @@ const ListEmpty = styled.div`
 
 export function Catalog({
   className,
-  data: {categories, applications},
+  data: { categories, applications },
   callback,
   options = {}
 }) {
@@ -50,8 +50,8 @@ export function Catalog({
     category: selectedCategory = ''
   } = options;
 
-  const selectedCategoryName = !selectedCategory ? null :
-    validate.inArray(selectedCategory.toLowerCase(), categories.map((category => category.name.toLowerCase())), null);
+  const selectedCategoryName = !selectedCategory ? null
+    : validate.inArray(selectedCategory.toLowerCase(), categories.map((category => category.name.toLowerCase())), null);
 
   if (selectedCategoryName) {
     const selectedCategory = categories.find(category => category.name.toLowerCase() === selectedCategoryName);
@@ -88,7 +88,7 @@ export function Catalog({
     setCategory(id);
   };
 
-  const listHeight = (() => height === parseInt(height) ? `${height}px` : height)();
+  const listHeight = (() => (height === parseInt(height) ? `${height}px` : height))();
 
   return (
     <ListComponent
@@ -118,7 +118,7 @@ export function Catalog({
 
         {!!filteredApplication.length && (
           <ListGrid>
-            {filteredApplication.length && filteredApplication.map(application =>
+            {filteredApplication.length && filteredApplication.map(application => (
               <Card
                 key={application.id}
                 callback={callback}
@@ -129,7 +129,7 @@ export function Catalog({
                   button: !promo
                 }}
               />
-            )}
+            ))}
           </ListGrid>
         )}
       </ListContainer>

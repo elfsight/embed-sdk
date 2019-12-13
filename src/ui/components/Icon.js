@@ -1,7 +1,7 @@
-import {h} from 'preact';
+import { h } from 'preact';
 import styled from 'styled-components';
 
-import {validate} from '../../helpers';
+import { validate } from '../../helpers';
 
 import SvgPlus from '../../icons/plus.svg';
 import SvgClose from '../../icons/close.svg';
@@ -37,7 +37,9 @@ const defineSvg = (name) => {
   }
 };
 
-export function Icon({className, type, size = '20px', color = '#fff', offset}) {
+export function Icon({
+  className, type, size = '20px', color = '#fff', offset
+}) {
   type = validate.inArray(type, TYPES, 'glyph');
 
   const SvgComponent = (() => defineSvg(type))();
@@ -48,7 +50,7 @@ export function Icon({className, type, size = '20px', color = '#fff', offset}) {
       iconSize={size}
       className={className}
     >
-      <SvgComponent fill={color}/>
+      <SvgComponent fill={color} />
     </IconComponent>
   );
 }

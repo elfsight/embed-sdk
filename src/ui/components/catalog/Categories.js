@@ -1,5 +1,5 @@
-import {h} from 'preact';
-import {useState} from 'preact/hooks';
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import styled from 'styled-components';
 
 const CategoriesComponent = styled.div`
@@ -19,18 +19,18 @@ const Category = styled.div`
   cursor: pointer;
   transition: background .3s;
   white-space: nowrap;
-  background: rgba(17, 17, 17, ${props => props.active ? '0.08' : '0'});
-  color: rgba(17, 17, 17, ${props => props.active ? '1' : '0.7'});
+  background: rgba(17, 17, 17, ${props => (props.active ? '0.08' : '0')});
+  color: rgba(17, 17, 17, ${props => (props.active ? '1' : '0.7')});
     
   &:hover {
     background: rgba(17, 17, 17, .04);
   }
 `;
 
-export function Categories({categories, selected, onSelect}) {
+export function Categories({ categories, selected, onSelect }) {
   return (
     <CategoriesComponent>
-      {categories.map((category) =>
+      {categories.map((category) => (
         <Category
           key={category.id}
           active={category.id === selected}
@@ -38,7 +38,7 @@ export function Categories({categories, selected, onSelect}) {
         >
           {category.name}
         </Category>
-      )}
+      ))}
     </CategoriesComponent>
   );
 }

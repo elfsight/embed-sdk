@@ -1,4 +1,4 @@
-import {Storage} from './Storage';
+import { Storage } from './Storage';
 
 const ENDPOINTS = {
   'applications.get': ['get', '/api/v1/public/applications/'],
@@ -43,12 +43,12 @@ export class API {
       url,
     } = this.getEndpoint(endpoint, params);
 
-    const request = await this.request(url, {method});
+    const request = await this.request(url, { method });
 
     return request.data;
   }
 
-  static async request(url, {method}) {
+  static async request(url, { method }) {
     const response = await fetch(url, {
       method
     });
@@ -63,7 +63,7 @@ export class API {
 
     let [method, url] = ENDPOINTS[entity];
 
-    for (let key in params) {
+    for (const key in params) {
       if (params.hasOwnProperty(key)) {
         url = url.replace(`<${key}>`, params[key]);
       }

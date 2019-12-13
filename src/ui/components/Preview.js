@@ -1,7 +1,7 @@
-import {h} from 'preact';
+import { h } from 'preact';
 import styled from 'styled-components';
 
-import {parametrize} from '../../helpers';
+import { parametrize } from '../../helpers';
 
 const PreviewComponent = styled.div`
   width: 100%;
@@ -36,7 +36,7 @@ export function Preview({
     templates_hide: hideTemplates
   });
 
-  const src = (() => `${BASE_URL}${publicId}` + (query ? `?${query}` : ''))();
+  const src = (() => `${BASE_URL}${publicId}${query ? `?${query}` : ''}`)();
 
   const previewHeight = (() => `${parseInt(height)}px`)();
 

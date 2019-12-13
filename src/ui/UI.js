@@ -1,3 +1,6 @@
+
+import { render, h } from 'preact';
+import { useRef } from 'preact/hooks';
 import {
   Button,
   Popup,
@@ -7,9 +10,6 @@ import {
   Preview
 } from './components';
 
-import {render, h} from 'preact';
-import {useRef} from 'preact/hooks';
-
 const CLASS_PREFIX = 'elfsight-embed-sdk';
 
 const ERROR_CONTAINER_EMPTY = 'Container to render UI is required';
@@ -18,11 +18,11 @@ const ERROR_CONTAINER_TYPE = 'Container must be a HTMLElement';
 export class UI {
   static checkContainer(container) {
     if (!container) {
-      throw new Error(ERROR_CONTAINER_EMPTY)
+      throw new Error(ERROR_CONTAINER_EMPTY);
     }
 
     if (!container.nodeType) {
-      throw new Error(ERROR_CONTAINER_TYPE)
+      throw new Error(ERROR_CONTAINER_TYPE);
     }
 
     return true;
@@ -104,11 +104,11 @@ export class UI {
     return new Promise(resolve => {
       const callback = (application) => {
         if (popup && popup.current) {
-          popup.current.setState({active: false});
+          popup.current.setState({ active: false });
           popup.current.props.content = null;
         }
 
-        return resolve(application)
+        return resolve(application);
       };
 
       const popup = UI.displayPopup(

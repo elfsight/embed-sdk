@@ -1,7 +1,7 @@
-import {h, isValidElement} from 'preact';
-import {useState} from 'preact/hooks';
-import {createPortal} from 'preact/compat';
-import {Parser} from 'html-to-react';
+import { h, isValidElement } from 'preact';
+import { useState } from 'preact/hooks';
+import { createPortal } from 'preact/compat';
+import { Parser } from 'html-to-react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -11,9 +11,9 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   z-index: 2147483647;
-  display: ${props => props.active ? 'block' : 'none'};
-  opacity: ${props => props.active ? 1 : 0};
-  visibility: ${props => props.active ? 'visible' : 'hidden'};
+  display: ${props => (props.active ? 'block' : 'none')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
 `;
 
 const Wrapper = styled.div`
@@ -84,7 +84,7 @@ const Close = styled.div`
   }
 `;
 
-export function Popup({className, content}) {
+export function Popup({ className, content }) {
   const [active, setActive] = useState(true);
 
   if (!content) {
@@ -100,7 +100,7 @@ export function Popup({className, content}) {
   })();
 
   const toggleActive = (state) => {
-    setActive(state)
+    setActive(state);
   };
 
   return createPortal(
@@ -115,7 +115,7 @@ export function Popup({className, content}) {
         </Inner>
       </Wrapper>
 
-      <Close/>
+      <Close />
     </Container>,
     document.body
   );

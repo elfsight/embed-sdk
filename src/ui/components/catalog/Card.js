@@ -1,7 +1,7 @@
-import {h, Fragment} from 'preact';
+import { h, Fragment } from 'preact';
 import styled from 'styled-components';
 
-import {Button} from './../Button';
+import { Button } from '../Button';
 
 const BASE_URL = 'https://apps.elfsight.com';
 
@@ -127,7 +127,7 @@ export function Card({
     >
       <CardContent>
         <CardIcon
-          src={(() => icon.includes('https://') ? icon : `${BASE_URL}${icon}`)()}
+          src={(() => (icon.includes('https://') ? icon : `${BASE_URL}${icon}`))()}
         />
 
         <div>

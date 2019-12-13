@@ -1,7 +1,7 @@
-import {h} from 'preact';
+import { h } from 'preact';
 import styled from 'styled-components';
 
-import {Button, Icon} from './index';
+import { Button, Icon } from './index';
 
 const LINK_BASE = 'https://apps.elfsight.com/embed';
 const PANEL_URL = 'https://apps.elfsight.com/panel/applications/';
@@ -14,7 +14,7 @@ const PanelComponent = styled.div`
   display: flex;
   align-items: center;
   background-color: ${props => props.panelColor};
-  width: ${props => props.panelSize === 'big' ? '100%' : 'fit-content'};
+  width: ${props => (props.panelSize === 'big' ? '100%' : 'fit-content')};
 `;
 
 const Link = styled.a`
@@ -26,7 +26,7 @@ const Link = styled.a`
 
 const ButtonsContainer = styled.div`
   display: flex;
-  width: ${props => props.panelSize === 'big' ? '100%' : 'fit-content'};
+  width: ${props => (props.panelSize === 'big' ? '100%' : 'fit-content')};
 `;
 
 const ButtonEdit = styled(Button)`
@@ -54,8 +54,7 @@ export function Panel({
     onRemove = () => {},
   }
 } = {}) {
-
-  const iconLink = (() => appAlias ? `${LINK_BASE}/${appAlias}/` : PANEL_URL)();
+  const iconLink = (() => (appAlias ? `${LINK_BASE}/${appAlias}/` : PANEL_URL))();
 
   return (
     <PanelComponent
@@ -70,10 +69,10 @@ export function Panel({
           rel="nofollow"
         >
           <Icon
-            type='glyph'
-            size='24px'
-            offset='0'
-            color='#f93262'
+            type="glyph"
+            size="24px"
+            offset="0"
+            color="#f93262"
           />
         </Link>
       )}

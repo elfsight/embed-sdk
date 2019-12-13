@@ -76,7 +76,7 @@ export class Storage {
     }
 
     const data = JSON.parse(rawData);
-    const {value, expirationDate} = data;
+    const { value, expirationDate } = data;
 
     if (Storage.isExpired(expirationDate)) {
       this.callAsyncUpdate(prefixedKey, getter);
@@ -97,4 +97,3 @@ export class Storage {
     return this.callUpdate(key, getter);
   }
 }
-

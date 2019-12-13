@@ -1,7 +1,9 @@
-import {UI} from './ui'
-import {API, Embed, Platform} from './api'
+import { UI } from './ui';
+import { API, Embed, Platform } from './api';
 
-import {mergeParams, cleanReferralId, renderHTML, parametrize} from './helpers';
+import {
+  mergeParams, cleanReferralId, renderHTML, parametrize
+} from './helpers';
 
 const BASE_URL = 'https://apps.elfsight.com';
 
@@ -72,7 +74,7 @@ export class SDK {
       url: `${BASE_URL}/widget/${widgetId}`,
       code: `<div class="elfsight-app-${widgetId}"></div>`,
       element: renderHTML(`<div class="elfsight-app-${widgetId}"></div>`)
-    }
+    };
   }
 
   async createWidget(appAlias, callback) {
@@ -82,7 +84,7 @@ export class SDK {
       const applications = await this.api.getApplications();
       const categories = await this.api.getCategories();
 
-      application = await UI.selectApplication({applications, categories});
+      application = await UI.selectApplication({ applications, categories });
     }
 
     return this.embed
@@ -94,8 +96,8 @@ export class SDK {
       .observe(MESSAGE_CREATE, (response) => {
         callback(Object.assign(
           SDK.widgetResponse(response.widgetId),
-          {app: application.alias}
-        ))
+          { app: application.alias }
+        ));
       });
   }
 
@@ -118,27 +120,27 @@ export class SDK {
   }
 
   displayButton(container, callback, options = {}) {
-    const {type, appAlias = null, widgetId = null} = options;
+    const { type, appAlias = null, widgetId = null } = options;
 
     return UI.displayButton(
       container,
-      this.handleCallback(type, callback, {appAlias, widgetId}),
+      this.handleCallback(type, callback, { appAlias, widgetId }),
       options
     );
   }
 
   displayCreateButton(container, callback, options = {}) {
-    const {appAlias = null} = options;
+    const { appAlias = null } = options;
 
     return UI.displayButton(
       container,
-      this.handleCallback(TYPE_CREATE, callback, {appAlias}),
+      this.handleCallback(TYPE_CREATE, callback, { appAlias }),
       mergeParams(options, BUTTON_CREATE_OPTIONS)
     );
   }
 
   displayEditButton(container, callback, options = {}) {
-    const {widgetId} = options;
+    const { widgetId } = options;
 
     if (!widgetId) {
       throw new Error(ERROR_WIDGET_ID_REQUIRED);
@@ -146,13 +148,13 @@ export class SDK {
 
     return UI.displayButton(
       container,
-      this.handleCallback(TYPE_EDIT, callback, {widgetId}),
+      this.handleCallback(TYPE_EDIT, callback, { widgetId }),
       mergeParams(options, BUTTON_EDIT_OPTIONS)
     );
   }
 
   displayRemoveButton(container, callback, options = {}) {
-    const {widgetId} = options;
+    const { widgetId } = options;
 
     if (!widgetId) {
       throw new Error(ERROR_WIDGET_ID_REQUIRED);
@@ -160,14 +162,14 @@ export class SDK {
 
     return UI.displayButton(
       container,
-      this.handleCallback(TYPE_REMOVE, callback, {widgetId}),
+      this.handleCallback(TYPE_REMOVE, callback, { widgetId }),
       mergeParams(options, BUTTON_REMOVE_OPTIONS)
     );
   }
 
   displayPanel(container, callbacks = {}, options = {}) {
-    const {widgetId, appAlias} = options;
-    const {onEdit, onRemove} = callbacks;
+    const { widgetId, appAlias } = options;
+    const { onEdit, onRemove } = callbacks;
 
     if (!widgetId) {
       throw new Error(ERROR_WIDGET_ID_REQUIRED);
@@ -176,8 +178,8 @@ export class SDK {
     return UI.displayPanel(
       container,
       {
-        onEdit: this.handleCallback(TYPE_EDIT, onEdit, {widgetId, appAlias}),
-        onRemove: this.handleCallback(TYPE_REMOVE, onRemove, {widgetId})
+        onEdit: this.handleCallback(TYPE_EDIT, onEdit, { widgetId, appAlias }),
+        onRemove: this.handleCallback(TYPE_REMOVE, onRemove, { widgetId })
       },
       options
     );
@@ -192,7 +194,7 @@ export class SDK {
       application => this.handleCallback(TYPE_CREATE, callback, {
         appAlias: application.alias
       })(),
-      {applications, categories},
+      { applications, categories },
       Object.assign(options, {
         promoReferral: options.promoReferral ? options.promoReferral : this.referral
       })
@@ -200,7 +202,7 @@ export class SDK {
   }
 
   async displayCard(container, callback, options = {}) {
-    const {appAlias} = options;
+    const { appAlias } = options;
 
     if (!appAlias) {
       throw new Error(ERROR_APP_ALIAS_REQUIRED);
@@ -214,7 +216,7 @@ export class SDK {
 
     return UI.displayCard(
       container,
-      () => this.handleCallback(TYPE_CREATE, callback, {appAlias})(),
+      () => this.handleCallback(TYPE_CREATE, callback, { appAlias })(),
       application,
       Object.assign(options, {
         promoReferral: options.promoReferral ? options.promoReferral : this.referral
@@ -223,7 +225,7 @@ export class SDK {
   }
 
   async displayPreview(container, options) {
-    const {appAlias} = options;
+    const { appAlias } = options;
 
     if (!appAlias) {
       throw new Error(ERROR_APP_ALIAS_REQUIRED);
@@ -241,7 +243,7 @@ export class SDK {
       Object.assign(options, {
         ref: options.ref ? options.ref : this.referral
       })
-    )
+    );
   }
 
   displayPopup(content) {

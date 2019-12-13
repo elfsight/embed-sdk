@@ -16,6 +16,8 @@
 		"react/jsx-filename-extension": "off",
 		"react/no-array-index-key": "off",
 		"react/jsx-one-expression-per-line": "off",
-		"react/no-danger": "off"
+		"react/no-danger": "off",
+        "react/react-in-jsx-scope": "off",
+        "no-use-before-define": "off"
 	}
 }

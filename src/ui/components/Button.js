@@ -1,4 +1,4 @@
-import {h} from 'preact';
+import { h } from 'preact';
 import styled from 'styled-components';
 
 import {
@@ -6,7 +6,7 @@ import {
   validate
 } from '../../helpers';
 
-import {Icon} from './index';
+import { Icon } from './index';
 
 const SIZES = ['small', 'medium', 'big'];
 
@@ -40,22 +40,22 @@ const ButtonComponent = styled.button`
   color: ${props => props.textColor};
   border-radius: 6px;
   box-sizing: content-box;
-  border: ${props => props.borderColor ? `1px solid ${props.borderColor}` : 'none'};
-  background: ${props => props.buttonColor ? props.buttonColor : 'none'};
+  border: ${props => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
+  background: ${props => (props.buttonColor ? props.buttonColor : 'none')};
   text-align: left;
   padding: ${props => getDependentValue(props.buttonSize, {
-  big: '8px 16px',
-  medium: '8px 12px',
-  small: '4px 8px',
-  icon: '4px 4px'
-})};
+    big: '8px 16px',
+    medium: '8px 12px',
+    small: '4px 8px',
+    icon: '4px 4px'
+  })};
   line-height: 16px;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   font-weight: bold;
   font-size: ${props => getDependentValue(props.buttonSize, {
-  default: '14px',
-  small: '12px'
-})};
+    default: '14px',
+    small: '12px'
+  })};
   
   &:hover ${ButtonOverlay} {
     opacity: 1;
@@ -82,12 +82,12 @@ export function Button({
 
   const [buttonColor, textColor, borderColor] = colors;
 
-  const iconOffset = (() => !hasText ? '0' :
-      getDependentValue(size, {
-        big: '10px',
-        medium: '8px',
-        small: '6px'
-      })
+  const iconOffset = (() => (!hasText ? '0'
+    : getDependentValue(size, {
+      big: '10px',
+      medium: '8px',
+      small: '6px'
+    }))
   )();
 
   const iconSize = (() => getDependentValue(size, {
@@ -96,7 +96,7 @@ export function Button({
     small: '16px'
   }))();
 
-  const buttonSize = (() => hasText ? size : 'icon')();
+  const buttonSize = (() => (hasText ? size : 'icon'))();
 
   return (
     <ButtonComponent
@@ -123,7 +123,7 @@ export function Button({
         )}
       </span>
 
-      <ButtonOverlay/>
+      <ButtonOverlay />
     </ButtonComponent>
   );
 }

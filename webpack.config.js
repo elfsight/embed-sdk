@@ -8,15 +8,10 @@ const copyright = () => {
   return `\r\n\telfsight.com\r\n\r\n\tCopyright (c) ${year} Elfsight, LLC. ALL RIGHTS RESERVED\r\n`;
 };
 
-const browsers = [
-  'last 2 versions',
-  'ie >= 9',
-  'safari >= 7',
-  'not dead'
-];
-
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
+  const target = process.env.WEBPACK_TARGET || 'umd';
+  const minimize = Boolean(process.env.WEBPACK_MINIMIZE);
 
   return {
     resolve: {
@@ -30,8 +25,10 @@ module.exports = (env, argv) => {
     entry: './src/index.js',
 
     output: {
-      filename: 'embed-sdk.js',
-      path: path.resolve(__dirname, 'lib'),
+      filename: `embed-sdk.${target}.js`,
+      path: path.join(__dirname, 'lib'),
+      library: 'ElfsightEmbedSDK',
+      libraryTarget: target === 'cjs' ? 'commonjs' : target
     },
 
     module: {
@@ -39,39 +36,7 @@ module.exports = (env, argv) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          use: [{
-            loader: 'babel-loader',
-            options: {
-              plugins: [
-                [
-                  'babel-plugin-styled-components',
-                  {
-                    'displayName': false
-                  }
-                ]
-              ],
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    useBuiltIns: 'usage',
-                    corejs: 2,
-                    modules: false,
-                    targets: {
-                      browsers
-                    }
-                  }
-                ],
-                [
-                  '@babel/preset-react',
-                  {
-                    'pragma': 'h',
-                    'pragmaFrag': 'Fragment',
-                  }
-                ]
-              ]
-            }
-          }]
+          loader: 'babel-loader'
         },
 
         {
@@ -90,9 +55,7 @@ module.exports = (env, argv) => {
       ]
     },
 
-    optimization: {
-      minimize: true
-    },
+    optimization: { minimize },
 
     plugins: [
       new webpack.BannerPlugin(copyright()),
