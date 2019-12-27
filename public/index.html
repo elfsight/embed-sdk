@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Elfsight Embed SDK</title>
+
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="embed-sdk.umd.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <script>
+    ElfsightEmbedSDK.setReferral('460635ba-35ef-4934-96e3-ae6de81a2037');
+    ElfsightEmbedSDK.setQueryParams({
+      utm_campaign: 'elfsight-blocks-wordpress',
+      utm_content: 'iframe',
+    });
+  </script>
+</head>
+<body>
+<main class="demo">
+  <div class="demo-overview">
+    <div class="demo-container">
+      <h1>Elfsight Embed SDK</h1>
+    </div>
+  </div>
+
+  <div class="demo-container">
+      <div class="demo-section">
+        <h3 class="demo-subtitle">
+          Buttons
+        </h3>
+
+        <pre><code class="language-js">const options = {
+  type: 'create', // string,required: 'create' | 'edit' | 'remove' | 'custom'/null
+  size: 'big' // string: 'big' | 'medium' | 'small'
+  style: 'primary', // string: 'primary' | 'outline'
+  backgroundColor: '#f93262',
+  textColor: '#fff',
+  borderColor: false,
+  text: 'Add Widget', // string
+  icon: 'glyph' // string: 'glyph' | 'edit' | 'plus' | 'trash' | 'search'
+}
+
+const container = document.querySelector('#button-container');
+const handler = (response) => {
+  // your logic
+};
+
+ElfsightEmbedSDK.displayButton(container, handler, options);</code></pre>
+
+        <div class="demo-placeholder demo-placeholder-button">
+          <div id="test-button-1"></div>
+          <div id="test-button-2"></div>
+          <div id="test-button-3"></div>
+          <div id="test-button-4"></div>
+          <div id="test-button-5"></div>
+          <div id="test-button-6"></div>
+        </div>
+
+        <div class="demo-placeholder demo-placeholder-button">
+          <div id="test-button-type-1"></div>
+          <div id="test-button-type-2"></div>
+          <div id="test-button-type-3"></div>
+        </div>
+
+        <script>
+
+          /*
+           * Buttons
+           */
+
+          const addHandler = () => {
+            console.log('added')
+          };
+
+          const buttonOptions = {
+            type: 'create',
+            size: 'big',
+            style: 'primary',
+            backgroundColor: '#f93262',
+            textColor: '#fff',
+            text: 'Add Widget',
+            copyright: true,
+            icon: 'glyph'
+          };
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-button-1'), addHandler, Object.assign({}, buttonOptions, {
+            size: 'big',
+          }));
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-button-2'), addHandler, Object.assign({}, buttonOptions, {
+            size: 'big',
+            icon: 'plus',
+            text: 'Embed Widget',
+            backgroundColor: false,
+            textColor: '#111111'
+          }));
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-button-3'), addHandler, Object.assign({}, buttonOptions, {
+            size: 'medium',
+            icon: 'search',
+            text: 'Search Widget',
+            backgroundColor: 'linear-gradient(45deg, rgba(231,72,234,1) 0%, rgba(75,26,188,1) 100%)',
+            textColor: '#fff',
+          }));
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-button-4'), addHandler, Object.assign({}, buttonOptions, {
+            size: 'big',
+            text: '',
+            backgroundColor: false,
+            textColor: '#f93262',
+            borderColor: '#fafafa',
+          }));
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-button-5'), addHandler, Object.assign({}, buttonOptions, {
+            size: 'small',
+            icon: false,
+            text: 'Edit Widget'
+          }));
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-button-6'), addHandler, Object.assign({}, buttonOptions, {
+            size: 'small',
+            icon: 'trash',
+            text: 'Delete Widget',
+            backgroundColor: false,
+            textColor: '#f93262',
+            borderColor: '#fafafa',
+          }));
+
+          ElfsightEmbedSDK.displayCreateButton(document.getElementById('test-button-type-1'), addHandler, {});
+
+          ElfsightEmbedSDK.displayEditButton(document.getElementById('test-button-type-2'), addHandler, {
+            widgetId: 'e4651014-6b2f-4a54-9170-6a990d8ebf04',
+            size: 'medium'
+          });
+
+          ElfsightEmbedSDK.displayRemoveButton(document.getElementById('test-button-type-3'), addHandler, {
+            widgetId: 'e4651014-6b2f-4a54-9170-6a990d8ebf04',
+            size: 'small'
+          });
+        </script>
+
+        <h3 class="demo-subtitle">
+          Widget Panel
+        </h3>
+
+        <pre><code class="language-js">const options = {
+  widgetId: widgetId, // string,required
+  size: 'big' // string: 'big' | 'medium' | 'small'
+}
+
+const container = document.querySelector('#button-container');
+const handler = (response) => {
+  // your logic
+};
+
+ElfsightEmbedSDK.displayButton(container, handler, options);</code></pre>
+
+        <div class="demo-placeholder demo-placeholder-panel">
+          <div id="test-panel-1"></div>
+          <div id="test-panel-2"></div>
+          <div id="test-panel-3"></div>
+          <div id="test-panel-4"></div>
+        </div>
+
+        <script>
+
+          /*
+           * Panels
+           */
+
+          const widgetId = 'e4651014-6b2f-4a54-9170-6a990d8ebf04';
+
+          const removeHandler = () => {
+            console.log('removed')
+          };
+
+          const editHandler = () => {
+            console.log('edited')
+          };
+
+          const panelCallbacks = {
+            onRemove: removeHandler,
+            onEdit: editHandler
+          };
+
+          const panelOptions = {
+            widgetId: widgetId,
+            size: 'big',
+          };
+
+          ElfsightEmbedSDK.displayPanel(document.getElementById('test-panel-1'), panelCallbacks, Object.assign({}, panelOptions, {
+            size: 'big',
+            color: '#dedede'
+          }));
+
+          ElfsightEmbedSDK.displayPanel(document.getElementById('test-panel-2'), panelCallbacks, Object.assign({}, panelOptions, {
+            size: 'medium'
+          }));
+
+          ElfsightEmbedSDK.displayPanel(document.getElementById('test-panel-3'), panelCallbacks, Object.assign({}, panelOptions, {
+            size: 'small'
+          }));
+
+          ElfsightEmbedSDK.displayPanel(document.getElementById('test-panel-4'), panelCallbacks, Object.assign({}, panelOptions, {
+            size: 'small',
+            icon: false
+          }));
+        </script>
+
+        <h3 class="demo-subtitle">
+          Popup
+        </h3>
+
+        <pre><code class="language-js">const popupContent = `
+  &ltdiv&gt
+    &lth2&gtHello world!&lt/h2&gt
+    &ltp&gtThis is a popup&lt/p&gt
+  &lt/div&gt
+`;
+
+ElfsightEmbedSDK.displayPopup(popupContent);</code></pre>
+
+        <div class="demo-placeholder demo-placeholder-button">
+          <div id="test-popup-1"></div>
+        </div>
+
+        <script>
+
+          /*
+           * Popup
+           */
+
+          const response = {
+            widgetCode: '<div class="elfsight-app-e4651014-6b2f-4a54-9170-6a990d8ebf04"></div>',
+          };
+
+          const popupContent = `
+            <div>
+              <h2 class="demo-title">Widget</h2>
+
+              <div class="demo-widget">
+                <div id="popup-panel-2"></div>
+                ${response.widgetCode}
+              </div>
+            </div>
+          `;
+
+          const popupOptions = {
+            width: '100%'
+          };
+
+          ElfsightEmbedSDK.displayButton(document.getElementById('test-popup-1'), () => {
+            ElfsightEmbedSDK.displayPopup(popupContent, popupOptions);
+            ElfsightEmbedSDK.displayPanel(document.getElementById('popup-panel-2'), panelCallbacks, panelOptions);
+          }, Object.assign({}, buttonOptions, {
+            size: 'big',
+            text: 'Display Popup',
+          }));
+        </script>
+
+        <h3 class="demo-subtitle">
+          Applications Catalog
+        </h3>
+
+        <pre><code class="language-js">const container = document.querySelector('#catalog-container');
+const options = {
+  title: 'Add Widget',
+  searchPlaceholder: 'Search by Widget Name',
+  searchEnabled: true,
+  height: 'auto',
+  category: null
+};
+const handler = (response) => {
+  // your logic
+};
+
+ElfsightEmbedSDK.displayCatalog(container, handler, options)</code></pre>
+
+        <div class="demo-placeholder demo-placeholder-catalog">
+          <div id="test-catalog-1"></div>
+          <br><br>
+
+          <div style="background: #fafafa; padding: 40px;">
+            <div id="test-catalog-2"></div>
+          </div>
+          <br><br>
+
+          <div id="test-catalog-3"></div>
+        </div>
+
+        <script>
+
+          /*
+           * Catalog
+           */
+
+          const catalogOptions = {
+            title: 'Add Widget',
+            searchPlaceholder: 'Search',
+            searchEnabled: true,
+            height: 'auto',
+            category: null
+          };
+
+          ElfsightEmbedSDK.displayCatalog(document.getElementById('test-catalog-1'), addHandler, Object.assign({}, catalogOptions, {
+            searchPlaceholder: 'Search',
+            height: 500
+          }));
+
+          ElfsightEmbedSDK.displayCatalog(document.getElementById('test-catalog-2'), (application) => {
+              console.log('promo callback', application)
+          }, Object.assign({}, catalogOptions, {
+            title: 'Embed the Chat',
+            searchEnabled: false,
+            category: 'chats',
+            promoMode: true,
+          }));
+
+          ElfsightEmbedSDK.displayCatalog(document.getElementById('test-catalog-3'), null, Object.assign({}, catalogOptions, {
+            title: 'Add amazing Elfsight Widgets to your store',
+            promo: true,
+            promoReferral: '460635ba-35ef-4934-96e3-ae6de81a2037',
+            height: 500
+          }));
+        </script>
+
+        <h3 class="demo-subtitle">
+          Application Card
+        </h3>
+
+        <pre><code class="language-js">const container = document.querySelector('#card-container');
+const options = {
+  appAlias: 'app-alias',
+  buttonText: 'ADD'
+};
+const handler = (response) => {
+  // your logic
+};
+
+ElfsightEmbedSDK.displayCard(container, handler, options)</code></pre>
+
+        <div class="demo-placeholder">
+          <div id="test-card-1"></div>
+          <div id="test-card-2"></div>
+        </div>
+
+        <script>
+
+          /*
+           * Card
+           */
+
+          const cardOptions = {
+            appAlias: '',
+            buttonText: 'ADD'
+          };
+
+          ElfsightEmbedSDK.displayCard(document.getElementById('test-card-1'), addHandler, Object.assign({}, cardOptions, {
+            appAlias: 'instashow',
+            buttonText: 'Set widget',
+            promoReferral: '460635ba-35ef-4934-96e3-ae6de81a2037'
+          }));
+
+          ElfsightEmbedSDK.displayCard(document.getElementById('test-card-2'), addHandler, Object.assign({}, cardOptions, {
+            appAlias: 'vimeo-gallery'
+          }));
+        </script>
+
+        <h3 class="demo-subtitle">
+          Preview
+        </h3>
+
+        <pre><code class="language-js">const container = document.querySelector('#preview-container');
+const options = {
+  appAlias: 'app-alias'
+};
+
+ElfsightEmbedSDK.displayCard(container, options)</code></pre>
+
+        <div class="demo-placeholder">
+          <div id="test-preview-1"></div>
+        </div>
+
+        <script>
+
+          /*
+           * Preview
+           */
+
+          const previewOptions = {
+            appAlias: 'instashow',
+            height: '800px',
+            ref: '460635ba-35ef-4934-96e3-ae6de81a2037',
+            hideTemplates: true,
+            templateId: null
+          };
+
+          ElfsightEmbedSDK.displayPreview(document.getElementById('test-preview-1'), previewOptions);
+        </script>
+      </div>
+
+      <h3 class="demo-subtitle">
+        Widget
+      </h3>
+
+      <pre><code class="language-js">const container = document.querySelector('#widget-container');
+
+ElfsightEmbedSDK.displayWidget(container, widgetId)</code></pre>
+
+      <div class="demo-placeholder">
+        <div id="test-widget-1"></div>
+      </div>
+
+      <script>
+
+        /*
+         * Widget
+         */
+
+        ElfsightEmbedSDK.displayWidget(document.getElementById('test-widget-1'), 'ed941a0f-3b0d-41cd-b6f9-76865141abfb');
+      </script>
+    </div>
+  </div>
+</main>
+</body>
+</html>
