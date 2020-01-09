@@ -35,7 +35,7 @@ export class SDK {
     this.embed = new Embed();
 
     this.referralId = null;
-    this.queryParams = DEFAULT_QUERY_PARAMS;
+    this.queryParams = {};
 
     Platform.init();
   }
@@ -53,9 +53,9 @@ export class SDK {
   }
 
   getQueryParams(params = {}) {
-    return Object.assign({}, this.queryParams, {
+    return Object.assign({}, DEFAULT_QUERY_PARAMS, params, {
       ref: this.referralId,
-    }, params);
+    }, this.queryParams);
   }
 
   static widgetResponse(widgetId) {
