@@ -12,6 +12,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
 
+    <script>
+        ElfsightEmbedSDK.createWidget().then(() => {
+            console.log('created')
+        })
+    </script>
+
   <script>
     ElfsightEmbedSDK.setReferral('460635ba-35ef-4934-96e3-ae6de81a2037');
     // ElfsightEmbedSDK.setQueryParams({
