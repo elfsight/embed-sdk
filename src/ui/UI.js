@@ -12,7 +12,7 @@ import {
 } from './components';
 import {onReady} from "../helpers";
 
-const PREFEFINED_BUTTONS = {
+const PREDEFINED_BUTTONS = {
   'create': {
     text: 'Add Widget',
     icon: 'glyph',
@@ -59,7 +59,7 @@ export class UI {
 
   static displayButton(container, callback, options = {}) {
     const { type } = options;
-    const predefinedOptions = type && PREFEFINED_BUTTONS[type] ? PREFEFINED_BUTTONS[type] : {};
+    const predefinedOptions = type && PREDEFINED_BUTTONS[type] ? PREDEFINED_BUTTONS[type] : {};
 
     return UI.checkContainer(container) && render(
       <Button
