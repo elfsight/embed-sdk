@@ -10,7 +10,6 @@ import {
   Preview,
   Widget
 } from './components';
-import {onReady} from "../helpers";
 
 const PREDEFINED_BUTTONS = {
   'create': {
@@ -129,15 +128,14 @@ export class UI {
 
   static displayPopup(content = null) {
     const popup = useRef(null);
-    const container = document.body;
 
     render(
-        UI.checkContainer(container) && <Popup
+      <Popup
         ref={popup}
         className={`${CLASS_PREFIX}-popup`}
         content={content}
       />,
-      container
+      document.body
     );
 
     return popup;
@@ -145,23 +143,21 @@ export class UI {
 
   static async selectApplication(data) {
     return new Promise(resolve => {
-      onReady(() => {
-        const callback = (application) => {
-          if (popup && popup.current) {
-            popup.current.setState({ active: false });
-            popup.current.props.content = null;
-          }
+      const callback = (application) => {
+        if (popup && popup.current) {
+          popup.current.setState({ active: false });
+          popup.current.props.content = null;
+        }
 
-          return resolve(application);
-        };
+        return resolve(application);
+      };
 
-        const popup = UI.displayPopup(
-          <Catalog
-            data={data}
-            callback={callback}
-          />
+      const popup = UI.displayPopup(
+        <Catalog
+          data={data}
+          callback={callback}
+        />
       );
-      })
     });
   }
 }
