@@ -1,6 +1,7 @@
 import { onReady } from '../helpers';
 
-const PLATFORM_URL = 'https://apps.elfsight.com/p/platform.js';
+const PLATFORM_URL = 'https://static.elfsight.com/platform/platform.js';
+const PM_PREFIX = 'EappsPlatform';
 
 export class Platform {
   static init() {
@@ -9,8 +10,8 @@ export class Platform {
 
     platform.src = PLATFORM_URL;
     platformStyle.innerHTML = `
-            .eapps-widget-toolbar{ display: none !important; }
-        `;
+      .eapps-widget-toolbar{ display: none !important; }
+    `;
 
     onReady(() => {
       document.head.appendChild(platform);
@@ -18,11 +19,14 @@ export class Platform {
     });
   }
 
-  static callWidgetReset(widgetId) {
-    if (!window.eapps) {
-      return false;
-    }
+  static callWidgetReset(widgetId, target = null) {
+    Platform.sendPostMessage('widgetReset', { widgetId }, target)
+  }
 
-    window.eapps.platform.resetWidget(widgetId);
+  static sendPostMessage(action, data, target = null) {
+    (target || window).postMessage({
+      action: `${PM_PREFIX}.${action}`,
+      ...data
+    }, '*')
   }
 }

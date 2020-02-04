@@ -9,7 +9,7 @@ export const createWidget = (appAlias) => new Promise(resolve => sdk.createWidge
 export const editWidget = (widgetId) => new Promise(resolve => sdk.editWidget(widgetId, resolve));
 export const removeWidget = (widgetId) => new Promise(resolve => sdk.removeWidget(widgetId, resolve));
 
-export const resetWidget = (widgetId) => sdk.callWidgetReset(widgetId);
+export const resetWidget = (widgetId, iframe) => sdk.callWidgetReset(widgetId, iframe);
 
 /*
  UI Methods

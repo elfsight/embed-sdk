@@ -15,6 +15,7 @@ const SearchInput = styled.input`
   outline: none;
   background: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
   padding: 4px 24px 4px 0;
   box-sizing: border-box;
   overflow: hidden;

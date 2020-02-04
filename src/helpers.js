@@ -1,10 +1,12 @@
-export const cleanReferralId = (ref) => {
-  const REFERRAL_BASE_URL = 'https://elfsight.com/?ref=';
 
-  return ref.replace(REFERRAL_BASE_URL, '');
-};
 
-export const isPromoMode = ({ promo, promoMode, promoEnabled }) => promo || promoMode || promoEnabled;
+const REFERRAL_BASE_URL = 'https://elfsight.com/?ref=';
+const CALLBACK_ON_APP = 'app';
+
+export const cleanReferralId = (ref) => ref.replace(REFERRAL_BASE_URL, '');
+
+export const checkIsPromoMode = ({ promo, promoMode, promoEnabled }) => promo || promoMode || promoEnabled;
+export const checkIsAppCallback = ({ callbackOn }) => callbackOn === CALLBACK_ON_APP;
 
 export const makeQuery = (params = {}, extendedParams = {}) => {
   const query = Object.keys(Object.assign(params, extendedParams))
@@ -70,4 +72,12 @@ export const checkRequiredParams = (params) => {
       throw new Error(`Parameter ${key} is required`);
     }
   }
+};
+
+export const getWindow = (iframe) => {
+  if (iframe instanceof Element || iframe instanceof HTMLDocument) {
+    iframe = iframe.contentWindow
+  }
+
+  return (iframe || window);
 };

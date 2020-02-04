@@ -16,13 +16,13 @@ const CardIcon = styled.img`
 const CardTitle = styled.div`
   font-weight: 600;
   font-size: 16px;
-  color: #2d2d2d;
+  color: currentColor;
 `;
 
 const CardCaption = styled.div`
   margin: 4px 0;
   font-size: 14px;
-  color: rgba(17, 17, 17, 0.7);
+  color: currentColor;
 `;
 
 const CardButtonContainer = styled.div`
@@ -61,19 +61,22 @@ const CardComponent = styled.a`
   outline: none;
   text-decoration: none;
   border-radius: 4px;
+  border-bottom: 0;
   overflow: hidden;
   transition: all .3s;
   position: relative;
-  
+  color: rgba(17, 17, 17, 0.7);
+
   &:hover ${CardContent} {
     opacity: .7;
+    color: rgba(17, 17, 17, 0.7);
   }
-  
+
   &:hover ${CardButtonContainer} {
     backdrop-filter: blur(.5px);
     background: rgba(255, 255, 255, .6);
   }
-  
+
   &:hover ${CardButton} {
     opacity: 1;
     transform: scale(1);

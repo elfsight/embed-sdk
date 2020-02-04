@@ -1,6 +1,7 @@
 
 import { render, h } from 'preact';
 import { useRef } from 'preact/hooks';
+import { onReady } from '../helpers';
 import {
   Button,
   Popup,
@@ -126,38 +127,39 @@ export class UI {
     );
   }
 
-  static displayPopup(content = null) {
-    const popup = useRef(null);
-
-    render(
+  static displayPopup(content = null, ref = null) {
+    onReady(() => render(
       <Popup
-        ref={popup}
+        ref={ref}
         className={`${CLASS_PREFIX}-popup`}
         content={content}
       />,
-      document.body
-    );
-
-    return popup;
+      window.document.body
+    ))
   }
 
   static async selectApplication(data) {
     return new Promise(resolve => {
-      const callback = (application) => {
-        if (popup && popup.current) {
-          popup.current.setState({ active: false });
-          popup.current.props.content = null;
-        }
+      requestAnimationFrame(() => {
+        const popupRef = useRef();
 
-        return resolve(application);
-      };
+        const callback = (application) => {
+          if (popupRef && popupRef.current) {
+            popupRef.current.setState({ active: false });
+            popupRef.current.props.content = null;
+          }
 
-      const popup = UI.displayPopup(
-        <Catalog
-          data={data}
-          callback={callback}
-        />
-      );
+          return resolve(application);
+        };
+
+        return UI.displayPopup(
+          <Catalog
+            data={data}
+            callback={callback}
+          />,
+          popupRef
+        );
+      })
     });
   }
 }

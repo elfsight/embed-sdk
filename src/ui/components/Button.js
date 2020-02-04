@@ -25,13 +25,14 @@ const ButtonOverlay = styled.div`
 const ButtonLabel = styled.div``;
 
 const ButtonCopyright = styled.div`
-  line-height: 14px;
+  line-height: 0.8em;
   font-size: 11px;
   font-weight: normal;
 `;
 
 const ButtonComponent = styled.button`
   position: relative;
+  overflow: hidden;
   align-items: center;
   outline: none;
   cursor: pointer;
@@ -39,7 +40,7 @@ const ButtonComponent = styled.button`
   flex: 0 0 auto;
   color: ${props => props.textColor};
   border-radius: 6px;
-  box-sizing: content-box;
+  box-sizing: border-box;
   border: ${props => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
   background: ${props => (props.backgroundColor ? props.backgroundColor : 'none')};
   text-align: left;
@@ -56,10 +57,14 @@ const ButtonComponent = styled.button`
     default: '14px',
     small: '12px'
   })};
-  
+
   &:hover ${ButtonOverlay} {
     opacity: 1;
     visibility: visible;
+  }
+
+  & span {
+    flex-grow: 1;
   }
 `;
 

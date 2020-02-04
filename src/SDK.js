@@ -2,7 +2,12 @@ import { UI } from './ui';
 import { API, Embed, Platform } from './api';
 
 import {
-  mergeParams, cleanReferralId, renderHTML, isPromoMode
+  mergeParams,
+  cleanReferralId,
+  renderHTML,
+  checkIsPromoMode,
+  checkIsAppCallback,
+  getWindow
 } from './helpers';
 
 const BASE_URL = 'https://apps.elfsight.com';
@@ -111,7 +116,7 @@ export class SDK {
       })
       .observe(MESSAGE_EDIT, () => {
         Platform.callWidgetReset(widgetId);
-        callback();
+        callback(widgetId);
       });
   }
 
@@ -151,20 +156,21 @@ export class SDK {
     const applications = await this.api.getApplications();
     const categories = await this.api.getCategories();
 
-    const promoMode = isPromoMode(options);
+    const isPromoMode = checkIsPromoMode(options);
+    const isAppCallback = checkIsAppCallback(options);
 
     this.setReferral(options.promoReferral);
 
     return UI.displayCatalog(
       container,
-      application => promoMode ? callback(application) : this.handleCallback(TYPE_CREATE, callback, {
+      application => isPromoMode || isAppCallback ? callback(application) : this.handleCallback(TYPE_CREATE, callback, {
         appAlias: application.alias
       })(),
       { applications, categories },
       Object.assign(options, {
-        promoMode,
+        promoMode: isPromoMode,
         queryParams: this.getQueryParams({
-          utm_content: promoMode ? 'promo' : null
+          utm_content: isPromoMode ? 'promo' : null
         })
       })
     );
@@ -183,18 +189,19 @@ export class SDK {
       throw new Error(ERROR_APP_NOT_FOUND);
     }
 
-    const promoMode = isPromoMode(options);
+    const isPromoMode = checkIsPromoMode(options);
+    const isAppCallback = checkIsAppCallback(options);
 
     this.setReferral(options.promoReferral);
 
     return UI.displayCard(
       container,
-      application => promoMode ? callback(application) : this.handleCallback(TYPE_CREATE, callback, { appAlias })(),
+      application => isPromoMode || isAppCallback ? callback(application) : this.handleCallback(TYPE_CREATE, callback, { appAlias })(),
       application,
       Object.assign(options, {
-        promoMode,
+        promoMode: isPromoMode,
         queryParams: this.getQueryParams({
-          utm_content: promoMode ? 'promo' : null
+          utm_content: isPromoMode ? 'promo' : null
         })
       })
     );
@@ -242,8 +249,8 @@ export class SDK {
     return UI.displayPopup(content);
   }
 
-  callWidgetReset(widgetId) {
-    return Platform.callWidgetReset(widgetId);
+  callWidgetReset(widgetId, iframe = null) {
+    return Platform.callWidgetReset(widgetId, getWindow(iframe));
   }
 
   handleCallback(

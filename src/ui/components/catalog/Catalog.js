@@ -7,8 +7,10 @@ import { Categories } from './Categories';
 import { Header } from './Header';
 import { validate } from '../../../helpers';
 
+const CLASS_PREFIX = 'elfsight-embed-sdk';
+
 const ListComponent = styled.div`
-  min-width: 280px;
+  color: #2d2d2d;
 `;
 
 const ListContainer = styled.div`
@@ -18,7 +20,7 @@ const ListContainer = styled.div`
 
 const ListGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 280px);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 280px));
   grid-gap: 12px;
   grid-row-gap: 12px;
   overflow: auto;
@@ -120,6 +122,7 @@ export function Catalog({
           <ListGrid>
             {filteredApplication.length && filteredApplication.map(application => (
               <Card
+                className={`${CLASS_PREFIX}-card`}
                 key={application.id}
                 callback={callback}
                 application={application}
