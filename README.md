@@ -442,12 +442,12 @@ Use this endpoint to get the list of available apps with the following data:
  * `name`
  * `alias`
  * `caption`
- * `icon`
  * `public_id`
  * `icon`
+ * `banner`
  * `category_id`
- * `promo_url`
  * `tags`
+ * `promo_url`
 
 <details>
 <summary><code>ElfsightEmbedSDK.getApplications()</code></summary>
