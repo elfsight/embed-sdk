@@ -6,7 +6,7 @@ import { makeQuery } from '../../helpers';
 const PreviewComponent = styled.div`
   width: 100%;
   height: ${props => props.previewHeight};
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
 `;
 
@@ -20,22 +20,25 @@ const BASE_URL = 'https://apps.elfsight.com/preview/';
 
 export function Preview({
   className,
-  publicId,
+  application,
   options = {}
 }) {
+  const { public_id } = application;
   const {
     height = '800px',
     templateId = null,
     hideTemplates = false,
+    hideInstall = false,
     queryParams = {}
   } = options;
 
   const query = makeQuery(queryParams, {
     template_id: templateId,
-    templates_hide: hideTemplates
+    templates_hide: hideTemplates,
+    install_hide: hideInstall
   });
 
-  const src = (() => `${BASE_URL}${publicId}${query}`)();
+  const src = (() => `${BASE_URL}${public_id}${query}`)();
 
   const previewHeight = (() => `${parseInt(height)}px`)();
 

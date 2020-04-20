@@ -35,7 +35,10 @@ const ListEmpty = styled.div`
 
 export function Catalog({
   className,
-  data: { categories, applications },
+  data: {
+    categories = [],
+    applications = []
+  },
   callback,
   options = {}
 }) {
@@ -47,8 +50,7 @@ export function Catalog({
     searchPlaceholder = 'Search',
     searchEnabled = true,
     height = 'auto',
-    promoMode = false,
-    queryParams = {},
+    buttonEnable = true,
     category: selectedCategory = ''
   } = options;
 
@@ -59,10 +61,6 @@ export function Catalog({
     const selectedCategory = categories.find(category => category.name.toLowerCase() === selectedCategoryName);
 
     applications = applications.filter(application => application.category_id === selectedCategory.id);
-  }
-
-  if (promoMode) {
-    applications = applications.filter(application => !!application.promo_url);
   }
 
   const filteredApplication = applications.filter(application => {
@@ -90,7 +88,7 @@ export function Catalog({
     setCategory(id);
   };
 
-  const listHeight = (() => (height === parseInt(height) ? `${height}px` : height))();
+  const listHeight = (() => (height == parseInt(height) ? `${height}px` : height))();
 
   return (
     <ListComponent
@@ -127,9 +125,7 @@ export function Catalog({
                 callback={callback}
                 application={application}
                 options={{
-                  promoMode,
-                  queryParams,
-                  button: !promoMode
+                  buttonEnable
                 }}
               />
             ))}

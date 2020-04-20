@@ -5,6 +5,8 @@ import {
   mergeParams,
   cleanReferralId,
   renderHTML,
+  getPromoMode,
+  makeQuery,
   checkIsPromoMode,
   checkIsAppCallback,
   getWindow
@@ -54,13 +56,19 @@ export class SDK {
   }
 
   setQueryParams(params = {}) {
-    this.queryParams = Object.assign({}, this.queryParams, params);
+    this.queryParams = {
+      ...this.queryParams,
+      ...params
+    };
   }
 
   getQueryParams(params = {}) {
-    return Object.assign({}, DEFAULT_QUERY_PARAMS, params, {
+    return {
+      ...DEFAULT_QUERY_PARAMS,
+      ...params,
       ref: this.referralId,
-    }, this.queryParams);
+      ...this.queryParams
+    };
   }
 
   static widgetResponse(widgetId) {
@@ -90,12 +98,10 @@ export class SDK {
           utm_content: 'embed'
         })
       })
-      .observe(MESSAGE_CREATE, (response) => {
-        callback(Object.assign(
-          SDK.widgetResponse(response.widgetId),
-          { app: application.alias }
-        ));
-      });
+      .observe(MESSAGE_CREATE, (response) => callback({
+        ...SDK.widgetResponse(response.widgetId),
+        app: application.alias
+      }));
   }
 
   async removeWidget(widgetId, callback) {
@@ -156,23 +162,25 @@ export class SDK {
     const applications = await this.api.getApplications();
     const categories = await this.api.getCategories();
 
-    const isPromoMode = checkIsPromoMode(options);
-    const isAppCallback = checkIsAppCallback(options);
+    const promoMode = getPromoMode(options);
+
+    const filteredApplications = promoMode === 'link'
+      ? applications.filter((app) => !!app.promo_url)
+      : applications;
 
     this.setReferral(options.promoReferral);
 
     return UI.displayCatalog(
       container,
-      application => isPromoMode || isAppCallback ? callback(application) : this.handleCallback(TYPE_CREATE, callback, {
-        appAlias: application.alias
-      })(),
-      { applications, categories },
-      Object.assign(options, {
-        promoMode: isPromoMode,
-        queryParams: this.getQueryParams({
-          utm_content: isPromoMode ? 'promo' : null
-        })
-      })
+      (app) => this.handleAppCallback(app, callback, promoMode),
+      {
+        applications: filteredApplications,
+        categories
+      },
+      {
+        ...options,
+        buttonEnable: !promoMode
+      }
     );
   }
 
@@ -189,21 +197,18 @@ export class SDK {
       throw new Error(ERROR_APP_NOT_FOUND);
     }
 
-    const isPromoMode = checkIsPromoMode(options);
-    const isAppCallback = checkIsAppCallback(options);
+    const promoMode = getPromoMode(options);
 
     this.setReferral(options.promoReferral);
 
     return UI.displayCard(
       container,
-      application => isPromoMode || isAppCallback ? callback(application) : this.handleCallback(TYPE_CREATE, callback, { appAlias })(),
+      (app) => this.handleAppCallback(app, callback, promoMode),
       application,
-      Object.assign(options, {
-        promoMode: isPromoMode,
-        queryParams: this.getQueryParams({
-          utm_content: isPromoMode ? 'promo' : null
-        })
-      })
+      {
+        ...options,
+        buttonEnable: !promoMode
+      }
     );
   }
 
@@ -224,13 +229,14 @@ export class SDK {
 
     return UI.displayPreview(
       container,
-      application.public_id,
-      Object.assign(options, {
+      application,
+      {
+        ...options,
         queryParams: this.getQueryParams({
           utm_campaign: application.alias,
-          utm_content: 'preview'
+          utm_content: 'demo'
         })
-      })
+      }
     );
   }
 
@@ -251,6 +257,36 @@ export class SDK {
 
   callWidgetReset(widgetId, iframe = null) {
     return Platform.callWidgetReset(widgetId, getWindow(iframe));
+  }
+
+  handleAppCallback(application, callback, promoMode) {
+    if (promoMode === 'demo') {
+      return UI.openPreview(application, {
+        queryParams: this.getQueryParams({
+          utm_campaign: application.alias,
+          utm_content: 'demo'
+        })
+      })
+    }
+
+    if (promoMode === 'link') {
+      const { promo_url } = application;
+
+      const query = makeQuery(this.getQueryParams({
+        utm_campaign: application.alias,
+        utm_content: 'promo'
+      }));
+
+      if (promo_url) {
+        window.open(promo_url + query, '_blank');
+      }
+
+      return callback && callback(application)
+    }
+
+    return this.handleCallback(TYPE_CREATE, callback, {
+      appAlias: application.alias
+    })();
   }
 
   handleCallback(

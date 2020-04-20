@@ -9,7 +9,7 @@ const HeaderComponent = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
-  color: #2d2d2d;
+  color: currentColor;
   line-height: 1;
 `;
 

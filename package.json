@@ -1,60 +1,63 @@
 {
-    "name": "@elfsight/embed-sdk",
-    "version": "0.2.2",
-    "description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
-    "main": "lib/embed-sdk.cjs.js",
+	"name": "@elfsight/embed-sdk",
+	"version": "0.3.0",
+	"description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
+	"main": "lib/embed-sdk.cjs.js",
 	"module": "lib/embed-sdk.cjs.js",
-    "browser": "lib/embed-sdk.umd.js",
+	"browser": "lib/embed-sdk.umd.js",
 	"browserslist": [
 		"> 0.25%",
 		"ie 11",
 		"not dead"
 	],
-    "scripts": {
-        "clean": "rimraf lib",
-        "build:umd": "WEBPACK_MINIMIZE=1 webpack --mode production",
-        "build:cjs": "WEBPACK_TARGET=cjs webpack --mode production",
-        "dev": "WEBPACK_TARGET=umd webpack-dev-server --mode development",
-        "build": "npm run build:umd & npm run build:cjs",
-        "production": "npm run build",
-        "prepublishOnly": "npm run clean && npm run build"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/elfsight/embed-sdk.git"
-    },
-    "author": "Elfsight <info@elfsight.com>",
-    "license": "ISC",
-    "homepage": "https://elfsight.com/developers/",
-    "devDependencies": {
-        "@babel/cli": "^7.7.5",
-        "@babel/core": "^7.7.5",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/plugin-transform-react-jsx": "^7.7.0",
-        "@babel/plugin-transform-runtime": "^7.7.6",
-        "@babel/preset-env": "^7.7.6",
-        "@babel/preset-react": "^7.7.4",
-        "@svgr/webpack": "^4.3.3",
-        "babel-eslint": "^10.0.3",
-        "babel-loader": "^8.0.6",
-        "babel-plugin-styled-components": "^1.10.6",
-        "eslint": "^6.7.2",
-        "eslint-config-airbnb": "^18.0.1",
-        "eslint-plugin-import": "^2.19.1",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.17.0",
-        "eslint-plugin-react-hooks": "^2.3.0",
-        "html-to-react": "^1.4.2",
-        "rimraf": "^3.0.0",
-        "webpack": "^4.41.2",
-        "webpack-bundle-analyzer": "^3.6.0",
-        "webpack-cli": "^3.3.10",
-        "webpack-dev-server": "^3.9.0"
-    },
-    "dependencies": {
-        "@babel/runtime": "^7.7.6",
-        "core-js": "^3.5.0",
-        "preact": "^10.0.5",
-        "styled-components": "^4.4.1"
-    }
+	"scripts": {
+		"clean": "rimraf lib",
+		"build:umd": "WEBPACK_MINIMIZE=1 webpack --mode production",
+		"build:cjs": "WEBPACK_TARGET=cjs webpack --mode production",
+		"dev": "WEBPACK_TARGET=umd webpack-dev-server --mode development",
+		"build": "npm run build:umd & npm run build:cjs",
+		"production": "npm run build",
+		"prepublishOnly": "npm run clean && npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/elfsight/embed-sdk.git"
+	},
+	"author": "Elfsight <info@elfsight.com>",
+	"license": "ISC",
+	"homepage": "https://elfsight.com/developers/",
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.9.0",
+		"@babel/plugin-proposal-class-properties": "^7.8.3",
+		"@babel/plugin-transform-react-jsx": "^7.9.4",
+		"@babel/plugin-transform-runtime": "^7.9.0",
+		"@babel/preset-env": "^7.9.5",
+		"@babel/preset-react": "^7.9.4",
+		"@svgr/webpack": "^4.3.3",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-styled-components": "^1.10.7",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb": "^18.1.0",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.19.0",
+		"eslint-plugin-react-hooks": "^2.5.1",
+		"html-to-react": "^1.4.2",
+		"preact-html-converter": "^0.4.2",
+		"preact-markup": "^1.6.0",
+		"rimraf": "^3.0.2",
+		"svg-url-loader": "^3.0.2",
+		"webpack": "^4.42.1",
+		"webpack-bundle-analyzer": "^3.7.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.10.3"
+	},
+	"dependencies": {
+		"@babel/runtime": "^7.9.2",
+		"core-js": "^3.6.5",
+		"preact": "^10.4.0",
+		"styled-components": "^5.1.0"
+	}
 }

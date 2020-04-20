@@ -278,7 +278,7 @@ ElfsightEmbedSDK.displayPopup(popupContent);</code></pre>
                     width: '100%'
                 };
 
-                ElfsightEmbedSDK.displayPopup(popupContent, popupOptions);
+                // ElfsightEmbedSDK.displayPopup(popupContent, popupOptions);
 
                 ElfsightEmbedSDK.displayButton(document.getElementById('test-popup-1'), () => {
                     ElfsightEmbedSDK.displayPopup(popupContent, popupOptions);
@@ -341,15 +341,16 @@ ElfsightEmbedSDK.displayCatalog(container, handler, options)</code></pre>
                 ElfsightEmbedSDK.displayCatalog(document.getElementById('test-catalog-2'), (application) => {
                     console.log('on app select callback', application)
                 }, Object.assign({}, catalogOptions, {
-                    title: null,
-                    searchEnabled: true,
-                    promoMode: true,
+                    title: 'Open promo page (chats)',
+                    searchEnabled: false,
+                    category: 'chats',
+                    promoMode: true, // 'link'
                     callbackOn: 'app'
                 }));
 
                 ElfsightEmbedSDK.displayCatalog(document.getElementById('test-catalog-3'), null, Object.assign({}, catalogOptions, {
-                    title: 'Add amazing Elfsight Widgets to your store',
-                    promo: true,
+                    title: 'Open an app demo',
+                    promoMode: 'demo',
                     promoReferral: '460635ba-35ef-4934-96e3-ae6de81a2037',
                     height: 500
                 }));
@@ -389,7 +390,8 @@ ElfsightEmbedSDK.displayCard(container, handler, options)</code></pre>
                 ElfsightEmbedSDK.displayCard(document.getElementById('test-card-1'), addHandler, Object.assign({}, cardOptions, {
                     appAlias: 'instashow',
                     buttonText: 'Set widget',
-                    promoReferral: '460635ba-35ef-4934-96e3-ae6de81a2037'
+                    promo: 'demo',
+                    promoReferral: 'test'
                 }));
 
                 ElfsightEmbedSDK.displayCard(document.getElementById('test-card-2'), addHandler, Object.assign({}, cardOptions, {

@@ -66,25 +66,25 @@ const Close = styled.div`
     background: currentColor;
     transition: all 0.25s ease;
   }
-  
+
   &::before {
     width: 24px;
     height: 2px;
     margin: -1px 0 0 -12px;
   }
-  
+
   &::after {
     width: 2px;
     height: 24px;
     margin: -12px 0 0 -1px;
   }
-  
+
   &:hover {
     opacity: 1;
   }
 `;
 
-export function Popup({ className, content }) {
+export function Popup({ className, content, style = {} }) {
   const [active, setActive] = useState(true);
 
   if (!content) {
@@ -110,7 +110,10 @@ export function Popup({ className, content }) {
       active={active}
     >
       <Wrapper>
-        <Inner onClick={(e) => e.stopPropagation()}>
+        <Inner
+          style={style}
+          onClick={(e) => e.stopPropagation()}
+        >
           {popupContent}
         </Inner>
       </Wrapper>

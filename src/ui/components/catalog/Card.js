@@ -1,8 +1,7 @@
-import { h, Fragment } from 'preact';
+import { h } from 'preact';
 import styled from 'styled-components';
 
 import { Button } from '../Button';
-import { makeQuery } from '../../../helpers';
 
 const BASE_URL = 'https://apps.elfsight.com';
 
@@ -11,6 +10,7 @@ const CardIcon = styled.img`
   height: 44px;
   flex: 0 0 44px;
   margin-right: 16px;
+  font-size: 10px;
 `;
 
 const CardTitle = styled.div`
@@ -92,51 +92,34 @@ export function Card({
   const {
     name,
     caption,
-    icon
+    icon,
+    promo_url
   } = application;
 
   const {
     buttonEnable = true,
     buttonIcon = 'plus',
     buttonText = 'ADD',
-    promoMode = false,
-    queryParams = {}
   } = options;
 
-  const query = makeQuery(queryParams, {
-    utm_campaign: application.alias
-  });
-
-  const url = (() => {
-    if (!application.promo_url) {
-      return '';
-    }
-
-    return application.promo_url + query;
-  })();
-
-  const onClick = (e) => {
-    e.preventDefault();
-
-    if (promoMode && url) {
-      window.open(url, '_blank');
-    }
-
-    return callback(application);
-  };
+  const iconUrl = (() => (icon.includes('https://') ? icon : `${BASE_URL}${icon}`))();
 
   return (
     <CardComponent
       className={className}
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        return callback(application);
+      }}
+      hasButton={buttonEnable && !!buttonText}
       rel="follow"
       target="_blank"
-      hasButton={(() => !!buttonText)()}
-      href={url}
+      href={promo_url}
     >
       <CardContent>
         <CardIcon
-          src={(() => (icon.includes('https://') ? icon : `${BASE_URL}${icon}`))()}
+          alt={name}
+          src={iconUrl}
         />
 
         <div>

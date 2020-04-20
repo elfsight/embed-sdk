@@ -1,4 +1,3 @@
-
 import { render, h } from 'preact';
 import { useRef } from 'preact/hooks';
 import { onReady } from '../helpers';
@@ -64,7 +63,10 @@ export class UI {
     return UI.checkContainer(container) && render(
       <Button
         className={`${CLASS_PREFIX}-button`}
-        options={Object.assign({}, predefinedOptions, options)}
+        options={{
+          ...predefinedOptions,
+          ...options
+        }}
         callback={callback}
       />,
       container
@@ -106,11 +108,11 @@ export class UI {
     );
   }
 
-  static displayPreview(container, appPublicId, options = {}) {
+  static displayPreview(container, application, options = {}) {
     return UI.checkContainer(container) && render(
       <Preview
         className={`${CLASS_PREFIX}-preview`}
-        publicId={appPublicId}
+        application={application}
         options={options}
       />,
       container
@@ -127,39 +129,59 @@ export class UI {
     );
   }
 
-  static displayPopup(content = null, ref = null) {
+  static displayPopup(content = null, ref = null, props) {
     onReady(() => render(
       <Popup
         ref={ref}
         className={`${CLASS_PREFIX}-popup`}
         content={content}
+        {...props}
       />,
       window.document.body
     ))
   }
 
+  static async openPreview(application, options) {
+    return new Promise(() => {
+      const popupRef = useRef();
+
+      UI.displayPopup(
+        <Preview
+          className={`${CLASS_PREFIX}-preview`}
+          application={application}
+          options={options}
+        />,
+        popupRef,
+        {
+          style: {
+            padding: 0,
+            maxWidth: 'calc(100% - 80px)'
+          }
+        }
+      );
+    });
+  }
+
   static async selectApplication(data) {
     return new Promise(resolve => {
-      requestAnimationFrame(() => {
-        const popupRef = useRef();
+      const popupRef = useRef();
 
-        const callback = (application) => {
-          if (popupRef && popupRef.current) {
-            popupRef.current.setState({ active: false });
-            popupRef.current.props.content = null;
-          }
+      const callback = (application) => {
+        if (popupRef && popupRef.current) {
+          popupRef.current.setState({ active: false });
+          popupRef.current.props.content = null;
+        }
 
-          return resolve(application);
-        };
+        return resolve(application);
+      };
 
-        return UI.displayPopup(
-          <Catalog
-            data={data}
-            callback={callback}
-          />,
-          popupRef
-        );
-      })
+      UI.displayPopup(
+        <Catalog
+          data={data}
+          callback={callback}
+        />,
+        popupRef
+      );
     });
   }
 }

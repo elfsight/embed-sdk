@@ -11,39 +11,39 @@ Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight
 [Getting Started](#getting-started)
 
  * [1. Add SDK](#1-add-sdk)
- 
+
  * [2. Embed the widgets](#2-embed-the-widgets)
- 
+
  * [3. Process the user’s configured widget](#3-process-the-users-configured-widget)
- 
+
  * [4. Allows the users to manage their widgets](#4-allows-the-users-to-manage-their-widgets)
- 
+
  * [5. Link Elfsight Affiliate Program](#5-link-elfsight-affiliate-program)
 
 [UI Components](#ui-components)
 
  * [Apps Catalog](#apps-catalog)
- 
+
  * [App Card](#app-card)
- 
+
  * [Widget Management Panel](#widget-management-panel)
- 
+
  * [Buttons](#buttons)
 
 [API Methods](#api-methods)
 
  * [Get the apps list](#get-the-apps-list)
- 
+
  * [Get the specific app](#get-the-specific-app)
- 
+
  * [Set affiliate referral ID](#set-affiliate-referral-id)
- 
+
  * [Open Create Widget window](#open-create-widget-window)
- 
+
  * [Open Edit Widget window](#open-edit-widget-window)
- 
+
  * [Call Remove Widget](#call-remove-widget)
- 
+
  * [Display a Widget](#display-a-widget)
 
 ## Getting Started
@@ -109,7 +109,9 @@ After a user’s widget is configured, it will call the callback function descri
 You need to save the widget data in your database in order to be able to do the following:
 
 * display the widget
+
 * allow the users to interact with the widget
+
 * embed components to manage the widget
 
 #### 3.2. Display the widget
@@ -121,17 +123,19 @@ Extend the example from previous step:
 <div id="widget-container"></div>
 
 <script>
-    // some kind of request to backend where is your saved the user widget 
+    // some kind of request to backend where is your saved the user widget
     const widget = fetch('/getUserWidget/');
-    const widgetContainer = document.querySelector('#widget-container');
-    
     // example of stored widget data
-    // widget = {
+    // {
     //     user_id: 1234,
     //     id: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+    //     url: 'https://apps.elfsight.com/widget/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+    //     code: '<div class="elfsight-app-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"></div>',
     //     app: 'application-alias'
     // };
-    
+
+    const widgetContainer = document.querySelector('#widget-container');
+
     ElfsightEmbedSDK.displayWidget(widgetContainer, widget.id);
 </script>
 ```
@@ -155,10 +159,10 @@ Example:
     const panelContainer = document.getElementById('widget-panel-container');
     const callbacks = {
         onEdit: () => {
-            console.log('edited!')   
+            console.log('edited!')
         },
         onRemove: () => {
-            console.log('removed!')   
+            console.log('removed!')
         }
     };
     const options = {
@@ -169,11 +173,13 @@ Example:
 </script>
 ```
 
-### 5. Link Elfsight Affiliate Program 
+### 5. Link Elfsight Affiliate Program
 Earn a termless 30% with each paid subscription made via your integration. Learn more about the [affiliate program](https://elfsight.com/affiliate-program/).
 
 1. Sign up to the program at [https://elfsight.com/affiliate-program/](https://elfsight.com/affiliate-program/)
+
 2. Wait for confirmation from Elfsight
+
 3. Get your referral ID and pass it to SDK right after adding it to your platform:
 
 ```js
@@ -209,17 +215,26 @@ ElfsightEmbedSDK.displayCatalog(container, callback, options);
 <summary>OPTIONS</summary>
 
 ####
-| option              | type    | default           | description                                                                                                                                       |
-| --------------------| ------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `title`             | string  | `'Choose Widget'` | Enter the catalog title text                                                                                                                      |
-| `searchEnabled`     | boolean | `true`            | Show/hide search field in the catalog                                                                                                             |
-| `searchPlaceholder` | string  | `''`              | Enter placeholder text for search field                                                                                                           |
-| `height`            | string  | `'auto'`          | Set the catalog height in pixels, set `'auto'` to display the catalog in full height                                                              |
-| `category`          | string  | `''`              | For cases when you need to display only one widget category, set the alias of the category here                                                   |
-| `promoMode`         | boolean | `false`           | Activate this mode display the apps catalog on your website, and refer your visitors to elfsight.com to earn more with Elfsight Affiliate Program |
-| `promoReferral`     | string  | `''`              | Add your referral id here (if you haven't done it earler with method [set the referral ID](#set-affiliate-referral-id)                            |
+| option              | type           | default           | description                                                                                                                   |
+| --------------------| -------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `title`             | string         | `'Choose Widget'` | Enter the catalog title text                                                                                                  |
+| `searchEnabled`     | boolean        | `true`            | Show/hide search field in the catalog                                                                                         |
+| `searchPlaceholder` | string         | `''`              | Enter placeholder text for search field                                                                                       |
+| `height`            | string         | `'auto'`          | Set the catalog height in pixels, set `'auto'` to display the catalog in full height                                          |
+| `category`          | string         | `''`              | For cases when you need to display only one widget category, set the alias of the category here                               |
+| `promoMode`         | boolean/string | `false`           | Specify the behavior of the catalog                                                                                           |
+| `promoReferral`     | string         | `''`              | Add your referral id here (if you haven't done it earler with method [Set affiliate referral ID](#set-affiliate-referral-id)  |
 
 Available values for `category` option can be obtained [here](https://apps.elfsight.com/api/v1/public/categories).
+
+Available values for `promoMode` option:
+
+ * `false`  - By default opens the apps.elfsight.com service in a new window to let your users create and select a widget. The selected widget returns as argument to the specified callback and then you can embed it to the required place.
+
+ * `'link'` - Activate this mode to display the apps catalog on your website, and to refer your visitors to elfsight.com site to earn more with Elfsight Affiliate Program.
+
+ * `'demo'` - Activate this mode to display the apps catalog and to open widget editor right on your website, and to refer your visitors to apps.elfsight.com dashboard to earn more with Elfsight Affiliate Program.
+
 </details>
 
 ### App Card
@@ -249,23 +264,38 @@ ElfsightEmbedSDK.displayCard(container, callback, options);
 <summary>OPTIONS</summary>
 
 ####
-| option          | type    | default | description                                                                                                                                       |
-| --------------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `appAlias`      | string  | `''`    | **Required**. Set the app alias you want to display as a card                                                                                     |
-| `buttonText`    | string  | `'ADD'` | Set hover button text                                                                                                                             |
-| `buttonIcon`    | string  | `'add'` | Set hover button icon                                                                                                                             |
-| `promoMode`     | boolean | `false` | Activate this mode display the apps catalog on your website, and refer your visitors to elfsight.com to earn more with Elfsight Affiliate Program |
-| `promoReferral` | string  | `''`    | Add your referral id here (if you haven't done it earler with method [set the referral ID](#set-affiliate-referral-id)                            |
+| option          | type           | default | description                                                                                                                  |
+| --------------- | -------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `appAlias`      | string         | `''`    | **Required**. Set the app alias you want to display as a card                                                                |
+| `buttonText`    | string         | `'ADD'` | Set hover button text                                                                                                        |
+| `buttonIcon`    | string         | `'add'` | Set hover button icon                                                                                                        |
+| `promoMode`     | boolean/string | `false` | Specify the behavior of the card                                                                                             |
+| `promoReferral` | string         | `''`    | Add your referral id here (if you haven't done it earler with method [Set affiliate referral ID](#set-affiliate-referral-id) |
 
 Available values for `appAlias` option can be obtained [here](https://apps.elfsight.com/api/v1/public/applications)
 
+Available values for `promoMode` option:
+
+ * `false`  - By default opens the apps.elfsight.com service in a new window to let your users create and select a widget. The selected widget returns as argument to the specified callback and then you can embed it to the required place.
+
+ * `'link'` - Activate this mode to display the apps catalog on your website, and to refer your visitors to elfsight.com site to earn more with Elfsight Affiliate Program.
+
+ * `'demo'` - Activate this mode to display the apps catalog and to open widget editor right on your website, and to refer your visitors to apps.elfsight.com dashboard to earn more with Elfsight Affiliate Program.
+
 Available values for `buttonIcon` option:
+
  * `'glyph'`
+
  * `'plus'`
+
  * `'edit'`
+
  * `'search'`
+
  * `'close'`
+
  * `'trash'`
+
 </details>
 
 ### Widget Management Panel
@@ -307,16 +337,20 @@ ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 | `color`    | string  | `'#fafafa'` | Set panel background color                                       |
 
 Available values for `size` option:
+
  * `'big'`
+
  * `'medium'`
+
  * `'small'`
+
 </details>
 
 ### Buttons
-This component includes 3 buttons: 
-* **Create** - opens the app catalog to let users choose an app, 
-* **Edit** - opens the widget eidtor window, 
-* **Remove** - remove widget from website.
+This component includes 3 buttons:
+ * **Create** - opens the app catalog to let users choose an app,
+ * **Edit** - opens the widget editor window,
+ * **Remove** - remove widget from website.
 
 ![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/demo-buttons.jpg)
 [![](https://raw.githubusercontent.com/elfsight/embed-sdk/master/assets/button-jsfiddle.svg?sanitize=true)](https://jsfiddle.net/elfsight/oj168u3f/)
@@ -352,24 +386,39 @@ ElfsightEmbedSDK.displayButton(container, callback, options);
 | `backgroundColor` | string/bool | `false`               | Set button border color (`false` for transparent) |
 | `text`            | string      | `'Add Widget'`        | Set button text                                   |
 | `icon`            | string      | `'glyph'`             | Select one of the available icons                 |
-         
+
 Available values for `type` option:
+
  * `'create'`
+
  * `'edit'`
+
  * `'remove'`
-                                           
+
+
 Available values for `size` option:
+
  * `'big'`
+
  * `'medium'`
+
  * `'small'`
- 
+
+
 Available values for `icon` option:
+
  * `'glyph'`
+
  * `'plus'`
+
  * `'edit'`
+
  * `'search'`
+
  * `'close'`
+
  * `'trash'`
+
 </details>
 
 #### Create Button
@@ -385,7 +434,7 @@ const callback = function(response) {
     // button callback logic
 };
 const options = {
-    appAlias: '' // set app alias to create a specific app. leave it blank to open app selection popup 
+    appAlias: '' // set app alias to create a specific app. leave it blank to open app selection popup
 };
 
 ElfsightEmbedSDK.displayCreateButton(container, callback, options);
@@ -440,13 +489,21 @@ Use the API endpoints to create your own components or interface to interact wit
 Use this endpoint to get the list of available apps with the following data:
 
  * `name`
+
  * `alias`
+
  * `caption`
+
  * `public_id`
+
  * `icon`
+
  * `banner`
+
  * `category_id`
+
  * `tags`
+
  * `promo_url`
 
 <details>
@@ -455,7 +512,7 @@ Use this endpoint to get the list of available apps with the following data:
 ####
 ```js
 const callback = function(response) {
-    // logic on 
+    // logic on
 };
 
 ElfsightEmbedSDK.getApplications().then(callback);

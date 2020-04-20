@@ -1,5 +1,3 @@
-
-
 const REFERRAL_BASE_URL = 'https://elfsight.com/?ref=';
 const CALLBACK_ON_APP = 'app';
 
@@ -15,6 +13,27 @@ export const makeQuery = (params = {}, extendedParams = {}) => {
     .join('&');
 
   return query ? `?${query}` : '';
+};
+
+export const getPromoMode = ({promo, promoMode, promoEnabled}) => {
+  if (
+    promo === 'demo'
+    || promoMode === 'demo'
+  ) {
+    return 'demo';
+  }
+
+  if (
+    promoEnabled
+    || promo
+    || promo === 'link'
+    || promoMode
+    || promoMode === 'link'
+  ) {
+    return 'link';
+  }
+
+  return false;
 };
 
 export const mergeParams = (params = {}, extend = {}) => {

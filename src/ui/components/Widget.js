@@ -11,6 +11,6 @@ export function Widget({
   return (
     <div
       className={className}
-    ></div>
+    />
   );
 }
