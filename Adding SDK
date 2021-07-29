@@ -1,4 +1,0 @@
-<script src="https://elfsight.com/embed-sdk.js"></script>
-
-import { ElfsightEmbedSDK } from '@elfsight/embed-sdk';
-
