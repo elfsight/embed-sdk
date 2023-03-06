@@ -4,8 +4,13 @@ const PAGES = {
   'application': '/embed/<appAlias>/',
   'widget.edit': '/embed/undefined/edit/<widgetId>/'
 };
+// const PAGES = {
+//   'application': '/apps/<appAlias>/',
+//   'widget.edit': '/widget/<widgetId>/'
+// };
 
 const BASE_URL = 'https://apps.elfsight.com';
+// const BASE_URL = 'https://dash.elfsight.com';
 const WINDOW_TARGET = 'elfsight-embed-sdk';
 const WINDOW_SIZES = [1200, 800];
 
@@ -37,8 +42,7 @@ export class Embed {
     return this; // chainable
   }
 
-  watchClose(callback = () => {
-  }) {
+  watchClose(callback = () => {}) {
     const popupTick = setInterval(() => {
       if (!this.instance) {
         clearInterval(popupTick);
@@ -61,6 +65,7 @@ export class Embed {
 
       if (event === message) {
         callback(data);
+        this.instance.window.close();
       }
     };
 

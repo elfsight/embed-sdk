@@ -1,6 +1,6 @@
 {
 	"name": "@elfsight/embed-sdk",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
 	"main": "lib/embed-sdk.cjs.js",
 	"module": "lib/embed-sdk.cjs.js",
@@ -22,6 +22,9 @@
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/elfsight/embed-sdk.git"
+	},
+	"publishConfig": {
+		"@elfsight:registry": "https://registry.npmjs.org"
 	},
 	"author": "Elfsight <info@elfsight.com>",
 	"license": "ISC",
