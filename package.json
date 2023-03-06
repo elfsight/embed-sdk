@@ -21,7 +21,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com/elfsight/embed-sdk.git"
+		"url": "git@github.com:elfsight/embed-sdk.git"
 	},
 	"publishConfig": {
 		"@elfsight:registry": "https://registry.npmjs.org"
