@@ -9,7 +9,7 @@ import {
   makeQuery,
   checkIsPromoMode,
   checkIsAppCallback,
-  getWindow
+  getWindow, transformToModernAlias, addQueryParams
 } from './helpers';
 
 const BASE_URL = 'https://apps.elfsight.com';
@@ -41,7 +41,8 @@ export class SDK {
     this.api = new API();
     this.embed = new Embed();
 
-    this.referralId = null;
+    this.referralId = undefined;
+    this.affiseParams = undefined;
     this.queryParams = {};
 
     Platform.init();
@@ -53,6 +54,17 @@ export class SDK {
     }
 
     this.referralId = cleanReferralId(ref);
+  }
+
+  setAffiseParams(pid, offerId = 3) {
+    if (!pid) {
+      return;
+    }
+
+    this.affiseParams = {
+      pid,
+      offer_id: offerId
+    };
   }
 
   setQueryParams(params = {}) {
@@ -67,6 +79,7 @@ export class SDK {
       ...DEFAULT_QUERY_PARAMS,
       ...params,
       ref: this.referralId,
+      ...(this.affiseParams || {}),
       ...this.queryParams
     };
   }
@@ -92,9 +105,10 @@ export class SDK {
 
     return this.embed
       .open('application', {
-        appAlias: application.alias,
+        appAlias: transformToModernAlias(application.alias),
+        withTracking: !!this.affiseParams?.pid,
         queryParams: this.getQueryParams({
-          utm_campaign: application.alias,
+          utm_campaign: transformToModernAlias(application.alias),
           utm_content: 'embed'
         })
       })
@@ -114,6 +128,7 @@ export class SDK {
     return this.embed
       .open('widget.edit', {
         widgetId,
+        withTracking: !!this.affiseParams?.pid,
         queryParams: this.getQueryParams({
           utm_campaign: 'widget_edit',
           utm_content: 'embed',
@@ -232,6 +247,7 @@ export class SDK {
       application,
       {
         ...options,
+        withTracking: !!this.affiseParams?.pid,
         queryParams: this.getQueryParams({
           utm_campaign: application.alias,
           utm_content: 'demo'
@@ -266,22 +282,20 @@ export class SDK {
           utm_campaign: application.alias,
           utm_content: 'demo'
         })
-      })
+      });
     }
 
     if (promoMode === 'link') {
       const { promo_url } = application;
 
-      const query = makeQuery(this.getQueryParams({
-        utm_campaign: application.alias,
-        utm_content: 'promo'
-      }));
-
       if (promo_url) {
-        window.open(promo_url + query, '_blank');
+        window.open(addQueryParams(promo_url, this.getQueryParams({
+          utm_campaign: application.alias,
+          utm_content: 'promo'
+        })), '_blank');
       }
 
-      return callback && callback(application)
+      return callback && callback(application);
     }
 
     return this.handleCallback(TYPE_CREATE, callback, {

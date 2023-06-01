@@ -1,16 +1,15 @@
-import { makeQuery } from '../helpers';
+import { addQueryParams } from '../helpers';
 
-const PAGES = {
-  'application': '/embed/<appAlias>/',
-  'widget.edit': '/embed/undefined/edit/<widgetId>/'
+const DASH_PAGES = {
+  'application': 'https://dash.elfsight.com/apps/<appAlias>',
+  'widget.edit': 'https://dash.elfsight.com/widget/<widgetId>'
 };
-// const PAGES = {
-//   'application': '/apps/<appAlias>/',
-//   'widget.edit': '/widget/<widgetId>/'
-// };
 
-const BASE_URL = 'https://apps.elfsight.com';
-// const BASE_URL = 'https://dash.elfsight.com';
+const GO_PAGES = {
+  'application': 'https://go.elfsight.io/click?path=/dash/apps/<appAlias>',
+  'widget.edit': 'https://go.elfsight.io/click?path=/dash/widget/<widgetId>'
+};
+
 const WINDOW_TARGET = 'elfsight-embed-sdk';
 const WINDOW_SIZES = [1200, 800];
 
@@ -121,15 +120,20 @@ export class Embed {
   static getFullUrl(page, params = {}) {
     const { queryParams } = params;
 
-    return Embed.getPage(page, params) + makeQuery(queryParams);
+    console.log('page', addQueryParams(Embed.getPage(page, params), queryParams));
+
+    return addQueryParams(Embed.getPage(page, params), queryParams);
   }
 
   static getPage(entity, params = {}) {
-    if (!PAGES[entity]) {
+    if (!DASH_PAGES[entity]) {
       throw new Error('Page not exist');
     }
 
-    let page = PAGES[entity];
+    let page = DASH_PAGES[entity];
+    if (params.withTracking) {
+      page = GO_PAGES[entity];
+    }
 
     for (const key in params) {
       if (params.hasOwnProperty(key)) {
@@ -137,6 +141,6 @@ export class Embed {
       }
     }
 
-    return BASE_URL + page;
+    return page;
   }
 }

@@ -20,6 +20,8 @@ Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight
 
  * [5. Link Elfsight Affiliate Program](#5-link-elfsight-affiliate-program)
 
+ * [6. Add Referral param](#6-add-referral-param)
+
 [UI Components](#ui-components)
 
  * [Apps Catalog](#apps-catalog)
@@ -174,13 +176,26 @@ Example:
 ```
 
 ### 5. Link Elfsight Affiliate Program
+
 Earn a termless 30% with each paid subscription made via your integration. Learn more about the [affiliate program](https://elfsight.com/affiliate-program/).
 
-1. Sign up to the program at [https://elfsight.com/affiliate-program/](https://elfsight.com/affiliate-program/)
+1. Sign up to the program at [https://elfsight.com/affiliate-program/](https://elfsight.com/affiliate-program/).
 
-2. Wait for confirmation from Elfsight
+2. Log in into you [affiliate account](https://elfsight.affise.com/v2/sign/in) and get your partner id (pid) and offer id.
 
-3. Get your referral ID and pass it to SDK right after adding it to your platform:
+3. Use a method `setAffiseParams` to use SDK with affiliate params.
+
+```js
+ElfsightEmbedSDK.setAffiseParams(pid, offerId);
+```
+
+If you have any difficulties, don't hesitate to contact us at [affiliates@elfsight.com](mailto:affiliates@elfsight.com).
+
+### 6. Add Referral Param
+
+To connect a [referral program](https://dash.elfsight.com/refer-a-friend) link use `setReferral` method:
+
+It will add a `?ref=` param to all links in SDK.
 
 ```js
 ElfsightEmbedSDK.setReferral('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');

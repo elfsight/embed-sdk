@@ -35,4 +35,5 @@ export const displayPopup = (content) => sdk.displayPopup(content);
 */
 
 export const setReferral = (ref) => sdk.setReferral(ref);
+export const setAffiseParams = (pid, offerId) => sdk.setAffiseParams(pid, offerId);
 export const setQueryParams = (params) => sdk.setQueryParams(params);

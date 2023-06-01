@@ -6,16 +6,16 @@ export const cleanReferralId = (ref) => ref.replace(REFERRAL_BASE_URL, '');
 export const checkIsPromoMode = ({ promo, promoMode, promoEnabled }) => promo || promoMode || promoEnabled;
 export const checkIsAppCallback = ({ callbackOn }) => callbackOn === CALLBACK_ON_APP;
 
-export const makeQuery = (params = {}, extendedParams = {}) => {
+export const addQueryParams = (url, params = {}, extendedParams = {}) => {
   const query = Object.keys(Object.assign(params, extendedParams))
     .filter(key => params[key] !== null && params[key] !== '')
     .map(key => `${key}=${params[key]}`)
     .join('&');
 
-  return query ? `?${query}` : '';
+  return url.includes('?') ? `${url}&${query}` : `${url}?${query}`;
 };
 
-export const getPromoMode = ({ promo, promoMode, promoEnabled}) => {
+export const getPromoMode = ({ promo, promoMode, promoEnabled }) => {
   if (
     promo === 'demo'
     || promoMode === 'demo'
@@ -100,3 +100,22 @@ export const getWindow = (iframe) => {
 
   return (iframe || window);
 };
+
+
+const LEGACY_ALIAS_MAP = {
+  instashow: 'instagram-feed',
+  yottie: 'youtube-gallery',
+  'events-calendar': 'event-calendar',
+  'social-icons': 'social-media-icons',
+  'g2crowd-reviews': 'g2-reviews',
+  'appleappstore-reviews': 'apple-app-store-reviews',
+  'ali-express-reviews': 'aliexpress-reviews',
+  'google-play-store-reviews': 'google-play-reviews',
+  'dealer-rater-reviews': 'dealerrater-reviews',
+  'ed-munds-reviews': 'edmunds-reviews',
+  'open-table-reviews': 'opentable-reviews'
+};
+
+export function transformToModernAlias(appAlias) {
+  return appAlias in LEGACY_ALIAS_MAP ? LEGACY_ALIAS_MAP[appAlias] : appAlias;
+}

@@ -1,6 +1,6 @@
 {
 	"name": "@elfsight/embed-sdk",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
 	"main": "lib/embed-sdk.cjs.js",
 	"module": "lib/embed-sdk.cjs.js",

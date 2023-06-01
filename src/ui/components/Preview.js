@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { addQueryParams, transformToModernAlias } from '../../helpers';
 
-import { makeQuery } from '../../helpers';
-
-const BASE_URL = 'https://demo.elfsight.com/demo/';
+const BASE_URL = 'https://dash.elfsight.com/demo/';
+const GO_URL = 'https://go.elfsight.io/click?path=/d/';
 
 export function Preview({
   className,
@@ -15,16 +15,20 @@ export function Preview({
     templateId = null,
     hideTemplates = false,
     hideInstall = false,
-    queryParams = {}
+    queryParams = {},
+    withTracking = false
   } = options;
 
-  const query = makeQuery(queryParams, {
-    template_id: templateId,
-    templates_hide: hideTemplates,
-    install_hide: hideInstall
-  });
-
-  const src = (() => `${BASE_URL}${alias}${query}`)();
+  const baseURL = withTracking ? GO_URL : BASE_URL;
+  const src = addQueryParams(
+    `${baseURL}${transformToModernAlias(alias)}`,
+    {
+      ...queryParams,
+      template_id: templateId,
+      templates_hide: hideTemplates,
+      install_hide: hideInstall
+    }
+  );
 
   const previewHeight = (() => `${parseInt(height)}px`)();
 
