@@ -18,11 +18,11 @@ export class API {
   }
 
   async getApplications() {
-    return await this.storage.get('applications', async () => await API.call('applications.get'));
+    return this.storage.get('applications', () => API.call('applications.get'));
   }
 
   async getCategories() {
-    const categories = await this.storage.get('categories', async () => await API.call('categories.get'));
+    const categories = await this.storage.get('categories', () => API.call('categories.get'));
 
     return [CATEGORY_ALL, ...categories];
   }
@@ -53,7 +53,7 @@ export class API {
       method
     });
 
-    return await response.json();
+    return response.json();
   }
 
   static getEndpoint(entity, params = {}) {

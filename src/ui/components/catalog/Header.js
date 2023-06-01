@@ -1,23 +1,5 @@
-import { h } from 'preact';
 import styled from 'styled-components';
-
 import { Search } from './Search';
-
-const HeaderComponent = styled.div`
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  color: currentColor;
-  line-height: 1;
-`;
-
-const HeaderTitle = styled.div`
-  font-size: 20px;
-  margin-right: 24px;
-  flex-shrink: 0;
-`;
 
 export function Header({
   title, searchPlaceholder, searchEnabled, onSearch
@@ -35,3 +17,19 @@ export function Header({
     </HeaderComponent>
   );
 }
+
+const HeaderComponent = styled.div`
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  color: currentColor;
+  line-height: 1;
+`;
+
+const HeaderTitle = styled.div`
+  font-size: 20px;
+  margin-right: 24px;
+  flex-shrink: 0;
+`;

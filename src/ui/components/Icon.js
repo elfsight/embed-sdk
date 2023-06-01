@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import styled from 'styled-components';
 
 import { validate } from '../../helpers';
@@ -11,31 +10,9 @@ import SvgSearch from '../../icons/search.svg';
 import SvgGlyph from '../../icons/glyph.svg';
 
 const TYPES = ['plus', 'close', 'trash', 'edit', 'search', 'glyph'];
-
-const IconComponent = styled.div`
-  width: ${(props) => props.iconSize};
-  height: ${(props) => props.iconSize};
-  flex: 0 0 ${(props) => props.iconSize};
-  margin-right: ${(props) => props.iconOffset};
-  line-height: 0;
-`;
-
-const defineSvg = (name) => {
-  switch (name) {
-    case 'plus':
-      return SvgPlus;
-    case 'close':
-      return SvgClose;
-    case 'trash':
-      return SvgTrash;
-    case 'edit':
-      return SvgEdit;
-    case 'search':
-      return SvgSearch;
-    case 'glyph':
-      return SvgGlyph;
-  }
-};
+const defineSvg = (name) => ({
+  plus: SvgPlus, close: SvgClose, trash: SvgTrash, edit: SvgEdit, search: SvgSearch, glyph: SvgGlyph
+}[name]);
 
 export function Icon({
   className, type, size = '20px', color = '#fff', offset
@@ -54,3 +31,11 @@ export function Icon({
     </IconComponent>
   );
 }
+
+const IconComponent = styled.div`
+  width: ${(props) => props.iconSize};
+  height: ${(props) => props.iconSize};
+  flex: 0 0 ${(props) => props.iconSize};
+  margin-right: ${(props) => props.iconOffset};
+  line-height: 0;
+`;

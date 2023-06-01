@@ -72,7 +72,7 @@ export class Storage {
     const rawData = this.driver.getItem(prefixedKey);
 
     if (!rawData) {
-      return await this.callUpdate(prefixedKey, getter);
+      return this.callUpdate(prefixedKey, getter);
     }
 
     const data = JSON.parse(rawData);

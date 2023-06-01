@@ -15,7 +15,7 @@ export const makeQuery = (params = {}, extendedParams = {}) => {
   return query ? `?${query}` : '';
 };
 
-export const getPromoMode = ({promo, promoMode, promoEnabled}) => {
+export const getPromoMode = ({ promo, promoMode, promoEnabled}) => {
   if (
     promo === 'demo'
     || promoMode === 'demo'
@@ -68,7 +68,7 @@ export const renderHTML = (element) => {
 
 export const toPascalCase = (str) => str.replace(/(?:^\w|[A-Z]|\b\w)/g, l => l.toUpperCase()).replace(/(-|\s)+/g, '');
 
-export const getDependentValue = (key, values) => (values[key] ? values[key] : values[Object.keys(values)[0]]);
+export const getDependentValue = (key, values) =>(values[key] ? values[key] : values[Object.keys(values)[0]]);
 
 export const validate = {
   inArray: (option, array, defaultValue) => {
@@ -95,7 +95,7 @@ export const checkRequiredParams = (params) => {
 
 export const getWindow = (iframe) => {
   if (iframe instanceof Element || iframe instanceof HTMLDocument) {
-    iframe = iframe.contentWindow
+    iframe = iframe.contentWindow;
   }
 
   return (iframe || window);

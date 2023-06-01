@@ -64,6 +64,9 @@ module.exports = (env, argv) => {
         analyzerMode: isProduction ? 'static' : false,
         reportFilename: '../bundle-report.html',
         generateStatsFile: false,
+      }),
+      new webpack.ProvidePlugin({
+        h: ['preact', 'h'],
       })
     ],
 

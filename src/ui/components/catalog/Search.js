@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useRef } from 'preact/hooks';
 import styled from 'styled-components';
 
@@ -24,7 +23,7 @@ const SearchInput = styled.input`
   line-height: 20px;
   width: 100%;
   box-shadow: none;
-  
+
   &::placeholder {
     color: #b8b8b8;
   }

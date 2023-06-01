@@ -27,6 +27,6 @@ export class Platform {
     (target || window).postMessage({
       action: `${PM_PREFIX}.${action}`,
       ...data
-    }, '*')
+    }, '*');
   }
 }

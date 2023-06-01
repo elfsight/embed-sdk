@@ -12,14 +12,14 @@ import {
 } from './components';
 
 const PREDEFINED_BUTTONS = {
-  'create': {
+  create: {
     text: 'Add Widget',
     icon: 'glyph',
     backgroundColor: '#f93262',
     textColor: '#fff',
     copyright: true
   },
-  'edit': {
+  edit: {
     text: 'Edit Widget',
     icon: 'edit',
     style: 'secondary',
@@ -27,7 +27,7 @@ const PREDEFINED_BUTTONS = {
     textColor: '#333',
     copyright: false
   },
-  'remove': {
+  remove: {
     text: 'Remove Widget',
     icon: 'trash',
     style: 'secondary',
@@ -138,7 +138,7 @@ export class UI {
         {...props}
       />,
       window.document.body
-    ))
+    ));
   }
 
   static async openPreview(application, options) {

@@ -1,29 +1,15 @@
-import { h } from 'preact';
 import styled from 'styled-components';
 
 import { makeQuery } from '../../helpers';
 
-const PreviewComponent = styled.div`
-  width: 100%;
-  height: ${props => props.previewHeight};
-  border-radius: 5px;
-  overflow: hidden;
-`;
-
-const PreviewIframe = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: 0;
-`;
-
-const BASE_URL = 'https://apps.elfsight.com/preview/';
+const BASE_URL = 'https://demo.elfsight.com/demo/';
 
 export function Preview({
   className,
   application,
   options = {}
 }) {
-  const { public_id } = application;
+  const { alias } = application;
   const {
     height = '800px',
     templateId = null,
@@ -38,7 +24,7 @@ export function Preview({
     install_hide: hideInstall
   });
 
-  const src = (() => `${BASE_URL}${public_id}${query}`)();
+  const src = (() => `${BASE_URL}${alias}${query}`)();
 
   const previewHeight = (() => `${parseInt(height)}px`)();
 
@@ -53,3 +39,16 @@ export function Preview({
     </PreviewComponent>
   );
 }
+
+const PreviewComponent = styled.div`
+  width: 100%;
+  height: ${(props) => props.previewHeight};
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+const PreviewIframe = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: 0;
+`;

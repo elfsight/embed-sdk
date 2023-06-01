@@ -1,72 +1,11 @@
-import { h } from 'preact';
 import styled from 'styled-components';
-
 import {
   getDependentValue,
   validate
 } from '../../helpers';
-
 import { Icon } from './index';
 
 const SIZES = ['small', 'medium', 'big'];
-
-const ButtonOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,.2);
-  transition: all .3s;
-  opacity: 0;
-  visibility: hidden;
-`;
-
-const ButtonLabel = styled.div``;
-
-const ButtonCopyright = styled.div`
-  line-height: 0.8em;
-  font-size: 11px;
-  font-weight: normal;
-`;
-
-const ButtonComponent = styled.button`
-  position: relative;
-  overflow: hidden;
-  align-items: center;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  flex: 0 0 auto;
-  color: ${props => props.textColor};
-  border-radius: 6px;
-  box-sizing: border-box;
-  border: ${props => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
-  background: ${props => (props.backgroundColor ? props.backgroundColor : 'none')};
-  text-align: left;
-  padding: ${props => getDependentValue(props.buttonSize, {
-    big: '8px 16px',
-    medium: '8px 12px',
-    small: '4px 8px',
-    icon: '4px 4px'
-  })};
-  line-height: 16px;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-weight: bold;
-  font-size: ${props => getDependentValue(props.buttonSize, {
-    default: '14px',
-    small: '12px'
-  })};
-
-  &:hover ${ButtonOverlay} {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  & span {
-    flex-grow: 1;
-  }
-`;
 
 export function Button({
   className, options = {}, callback = () => {}
@@ -132,3 +71,62 @@ export function Button({
     </ButtonComponent>
   );
 }
+
+
+const ButtonOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,.2);
+  transition: all .3s;
+  opacity: 0;
+  visibility: hidden;
+`;
+
+const ButtonLabel = styled.div``;
+
+const ButtonCopyright = styled.div`
+  line-height: 0.8em;
+  font-size: 11px;
+  font-weight: normal;
+`;
+
+const ButtonComponent = styled.button`
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex: 0 0 auto;
+  color: ${props => props.textColor};
+  border-radius: 6px;
+  box-sizing: border-box;
+  border: ${props => (props.borderColor ? `1px solid ${props.borderColor}` : 'none')};
+  background: ${props => (props.backgroundColor ? props.backgroundColor : 'none')};
+  text-align: left;
+  padding: ${props => getDependentValue(props.buttonSize, {
+    big: '8px 16px',
+    medium: '8px 12px',
+    small: '4px 8px',
+    icon: '4px 4px'
+  })};
+  line-height: 16px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-weight: bold;
+  font-size: ${props => getDependentValue(props.buttonSize, {
+    default: '14px',
+    small: '12px'
+  })};
+
+  &:hover ${ButtonOverlay} {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  & span {
+    flex-grow: 1;
+  }
+`;

@@ -1,37 +1,11 @@
-import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import styled from 'styled-components';
-
 import { Card } from './Card';
 import { Categories } from './Categories';
 import { Header } from './Header';
 import { validate } from '../../../helpers';
 
 const CLASS_PREFIX = 'elfsight-embed-sdk';
-
-const ListComponent = styled.div`
-  color: #2d2d2d;
-`;
-
-const ListContainer = styled.div`
-  max-height: ${props => props.listHeight};
-  overflow: auto;
-`;
-
-const ListGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 280px));
-  grid-gap: 12px;
-  grid-row-gap: 12px;
-  overflow: auto;
-`;
-
-const ListEmpty = styled.div`
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  font-size: 14px;
-  text-align: center;
-  padding: 80px;
-`;
 
 export function Catalog({
   className,
@@ -54,8 +28,7 @@ export function Catalog({
     category: selectedCategory = ''
   } = options;
 
-  const selectedCategoryName = !selectedCategory ? null
-    : validate.inArray(selectedCategory.toLowerCase(), categories.map((category => category.name.toLowerCase())), null);
+  const selectedCategoryName = !selectedCategory ? null : validate.inArray(selectedCategory.toLowerCase(), categories.map((category => category.name.toLowerCase())), null);
 
   if (selectedCategoryName) {
     const selectedCategory = categories.find(category => category.name.toLowerCase() === selectedCategoryName);
@@ -135,3 +108,27 @@ export function Catalog({
     </ListComponent>
   );
 }
+
+const ListComponent = styled.div`
+  color: #2d2d2d;
+`;
+
+const ListContainer = styled.div`
+  max-height: ${props => props.listHeight};
+  overflow: auto;
+`;
+
+const ListGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 280px));
+  grid-gap: 12px;
+  grid-row-gap: 12px;
+  overflow: auto;
+`;
+
+const ListEmpty = styled.div`
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 80px;
+`;

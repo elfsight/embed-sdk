@@ -1,9 +1,68 @@
-import { h } from 'preact';
 import styled from 'styled-components';
-
 import { Button } from '../Button';
 
 const BASE_URL = 'https://apps.elfsight.com';
+
+export function Card({
+  className,
+  application,
+  callback = () => {},
+  options = {}
+}) {
+  const {
+    name,
+    caption,
+    icon,
+    promo_url
+  } = application;
+
+  const {
+    buttonEnable = true,
+    buttonIcon = 'plus',
+    buttonText = 'ADD',
+  } = options;
+
+  const iconUrl = (() => (icon.includes('https://') ? icon : `${BASE_URL}${icon}`))();
+
+  return (
+    <CardComponent
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        return callback(application);
+      }}
+      hasButton={buttonEnable && !!buttonText}
+      rel="follow"
+      target="_blank"
+      href={promo_url}
+    >
+      <CardContent>
+        <CardIcon
+          alt={name}
+          src={iconUrl}
+        />
+
+        <div>
+          <CardTitle>{name}</CardTitle>
+          <CardCaption>{caption}</CardCaption>
+        </div>
+      </CardContent>
+
+      {buttonEnable && (
+        <CardButtonContainer>
+          <CardButton
+            options={{
+              size: 'small',
+              icon: buttonIcon,
+              text: buttonText
+            }}
+          />
+        </CardButtonContainer>
+      )}
+    </CardComponent>
+  );
+}
+
 
 const CardIcon = styled.img`
   width: 44px;
@@ -82,63 +141,3 @@ const CardComponent = styled.a`
     transform: scale(1);
   }
 `;
-
-export function Card({
-  className,
-  application,
-  callback = () => {},
-  options = {}
-}) {
-  const {
-    name,
-    caption,
-    icon,
-    promo_url
-  } = application;
-
-  const {
-    buttonEnable = true,
-    buttonIcon = 'plus',
-    buttonText = 'ADD',
-  } = options;
-
-  const iconUrl = (() => (icon.includes('https://') ? icon : `${BASE_URL}${icon}`))();
-
-  return (
-    <CardComponent
-      className={className}
-      onClick={(e) => {
-        e.preventDefault();
-        return callback(application);
-      }}
-      hasButton={buttonEnable && !!buttonText}
-      rel="follow"
-      target="_blank"
-      href={promo_url}
-    >
-      <CardContent>
-        <CardIcon
-          alt={name}
-          src={iconUrl}
-        />
-
-        <div>
-          <CardTitle>{name}</CardTitle>
-          <CardCaption>{caption}</CardCaption>
-        </div>
-      </CardContent>
-
-      {buttonEnable && (
-        <CardButtonContainer>
-          <CardButton
-            options={{
-              size: 'small',
-              icon: buttonIcon,
-              text: buttonText
-            }}
-          />
-        </CardButtonContainer>
-      )}
-    </CardComponent>
-  );
-}

@@ -1,8 +1,49 @@
-import { h, isValidElement } from 'preact';
+import { isValidElement } from 'preact';
 import { useState } from 'preact/hooks';
 import { createPortal } from 'preact/compat';
 import { Parser } from 'html-to-react';
 import styled from 'styled-components';
+
+export function Popup({ className, content, style = {} }) {
+  const [active, setActive] = useState(true);
+
+  if (!content) {
+    return setActive(false);
+  }
+
+  const popupContent = (() => {
+    if (!isValidElement(content)) {
+      content = (new Parser()).parse(content);
+    }
+
+    return content;
+  })();
+
+  const toggleActive = (state) => {
+    setActive(state);
+  };
+
+  return createPortal(
+    <Container
+      className={className}
+      onClick={() => toggleActive(false)}
+      active={active}
+    >
+      <Wrapper>
+        <Inner
+          style={style}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {popupContent}
+        </Inner>
+      </Wrapper>
+
+      <Close />
+    </Container>,
+    document.body
+  );
+}
+
 
 const Container = styled.div`
   position: fixed;
@@ -83,43 +124,3 @@ const Close = styled.div`
     opacity: 1;
   }
 `;
-
-export function Popup({ className, content, style = {} }) {
-  const [active, setActive] = useState(true);
-
-  if (!content) {
-    return setActive(false);
-  }
-
-  const popupContent = (() => {
-    if (!isValidElement(content)) {
-      content = (new Parser()).parse(content);
-    }
-
-    return content;
-  })();
-
-  const toggleActive = (state) => {
-    setActive(state);
-  };
-
-  return createPortal(
-    <Container
-      className={className}
-      onClick={() => toggleActive(false)}
-      active={active}
-    >
-      <Wrapper>
-        <Inner
-          style={style}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {popupContent}
-        </Inner>
-      </Wrapper>
-
-      <Close />
-    </Container>,
-    document.body
-  );
-}
