@@ -1,6 +1,6 @@
 {
 	"name": "@elfsight/embed-sdk",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
 	"main": "lib/embed-sdk.cjs.js",
 	"module": "lib/embed-sdk.cjs.js",
@@ -13,9 +13,9 @@
 	"scripts": {
 		"clean": "rimraf lib",
 		"build:umd": "WEBPACK_MINIMIZE=1 webpack --mode production",
-		"build:cjs": "WEBPACK_TARGET=cjs webpack --mode production",
+		"build:cjs": "WEBPACK_MINIMIZE=1 WEBPACK_TARGET=cjs webpack --mode production",
 		"dev": "WEBPACK_TARGET=umd webpack-dev-server --mode development",
-		"build": "npm run build:umd & npm run build:cjs",
+		"build": "npm run build:umd && npm run build:cjs",
 		"production": "npm run build",
 		"prepublishOnly": "npm run clean && npm run build"
 	},
