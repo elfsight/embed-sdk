@@ -20,7 +20,7 @@ export class Platform {
   }
 
   static callWidgetReset(widgetId, target = null) {
-    Platform.sendPostMessage('widgetReset', { widgetId }, target)
+    Platform.sendPostMessage('widgetReset', { widgetId }, target);
   }
 
   static sendPostMessage(action, data, target = null) {

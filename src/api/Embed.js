@@ -120,8 +120,6 @@ export class Embed {
   static getFullUrl(page, params = {}) {
     const { queryParams } = params;
 
-    console.log('page', addQueryParams(Embed.getPage(page, params), queryParams));
-
     return addQueryParams(Embed.getPage(page, params), queryParams);
   }
 
