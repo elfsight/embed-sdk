@@ -9,7 +9,9 @@ import {
   makeQuery,
   checkIsPromoMode,
   checkIsAppCallback,
-  getWindow, transformToModernAlias, addQueryParams
+  getWindow,
+  transformToModernAlias,
+  addQueryParams
 } from './helpers';
 
 const BASE_URL = 'https://apps.elfsight.com';

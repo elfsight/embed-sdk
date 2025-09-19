@@ -1,6 +1,6 @@
 {
 	"name": "@elfsight/embed-sdk",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"description": "Elfsight Embed SDK is a tool to integrate Elfsight widgets catalog directly on your platform",
 	"main": "lib/embed-sdk.cjs.js",
 	"module": "lib/embed-sdk.cjs.js",
@@ -14,7 +14,7 @@
 		"clean": "rimraf lib",
 		"build:umd": "WEBPACK_MINIMIZE=1 webpack --mode production",
 		"build:cjs": "WEBPACK_MINIMIZE=1 WEBPACK_TARGET=cjs webpack --mode production",
-		"dev": "WEBPACK_TARGET=umd webpack-dev-server --mode development",
+		"dev": "NODE_OPTIONS=--openssl-legacy-provider WEBPACK_TARGET=umd webpack-dev-server --mode development",
 		"build": "npm run build:umd && npm run build:cjs",
 		"production": "npm run build",
 		"prepublishOnly": "npm run clean && npm run build"
@@ -47,7 +47,7 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.1",
-		"html-to-react": "^1.4.2",
+		"html-to-react": "1.4.2",
 		"preact-html-converter": "^0.4.2",
 		"preact-markup": "^1.6.0",
 		"rimraf": "^3.0.2",
@@ -61,6 +61,7 @@
 		"@babel/runtime": "^7.9.2",
 		"core-js": "^3.6.5",
 		"preact": "^10.4.0",
-		"styled-components": "^5.1.0"
+		"styled-components": "^5.1.0",
+		"react-svg": "^16.3.0"
 	}
 }

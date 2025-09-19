@@ -11,41 +11,27 @@ Elfsight Embed SDK is a tool to integrate [Elfsight 50+ widgets](http://elfsight
 [Getting Started](#getting-started)
 
  * [1. Add SDK](#1-add-sdk)
-
  * [2. Embed the widgets](#2-embed-the-widgets)
-
  * [3. Process the user’s configured widget](#3-process-the-users-configured-widget)
-
  * [4. Allows the users to manage their widgets](#4-allows-the-users-to-manage-their-widgets)
-
  * [5. Link Elfsight Affiliate Program](#5-link-elfsight-affiliate-program)
-
  * [6. Add Referral param](#6-add-referral-param)
 
 [UI Components](#ui-components)
 
  * [Apps Catalog](#apps-catalog)
-
  * [App Card](#app-card)
-
  * [Widget Management Panel](#widget-management-panel)
-
  * [Buttons](#buttons)
 
 [API Methods](#api-methods)
 
  * [Get the apps list](#get-the-apps-list)
-
  * [Get the specific app](#get-the-specific-app)
-
  * [Set affiliate referral ID](#set-affiliate-referral-id)
-
  * [Open Create Widget window](#open-create-widget-window)
-
  * [Open Edit Widget window](#open-edit-widget-window)
-
  * [Call Remove Widget](#call-remove-widget)
-
  * [Display a Widget](#display-a-widget)
 
 ## Getting Started
@@ -111,9 +97,7 @@ After a user’s widget is configured, it will call the callback function descri
 You need to save the widget data in your database in order to be able to do the following:
 
 * display the widget
-
 * allow the users to interact with the widget
-
 * embed components to manage the widget
 
 #### 3.2. Display the widget
@@ -245,9 +229,7 @@ Available values for `category` option can be obtained [here](https://apps.elfsi
 Available values for `promoMode` option:
 
  * `false`  - By default opens the apps.elfsight.com service in a new window to let your users create and select a widget. The selected widget returns as argument to the specified callback and then you can embed it to the required place.
-
  * `'link'` - Activate this mode to display the apps catalog on your website, and to refer your visitors to elfsight.com site to earn more with Elfsight Affiliate Program.
-
  * `'demo'` - Activate this mode to display the apps catalog and to open widget editor right on your website, and to refer your visitors to apps.elfsight.com dashboard to earn more with Elfsight Affiliate Program.
 
 </details>
@@ -292,23 +274,16 @@ Available values for `appAlias` option can be obtained [here](https://apps.elfsi
 Available values for `promoMode` option:
 
  * `false`  - By default opens the apps.elfsight.com service in a new window to let your users create and select a widget. The selected widget returns as argument to the specified callback and then you can embed it to the required place.
-
  * `'link'` - Activate this mode to display the apps catalog on your website, and to refer your visitors to elfsight.com site to earn more with Elfsight Affiliate Program.
-
  * `'demo'` - Activate this mode to display the apps catalog and to open widget editor right on your website, and to refer your visitors to apps.elfsight.com dashboard to earn more with Elfsight Affiliate Program.
 
 Available values for `buttonIcon` option:
 
  * `'glyph'`
-
  * `'plus'`
-
  * `'edit'`
-
  * `'search'`
-
  * `'close'`
-
  * `'trash'`
 
 </details>
@@ -354,9 +329,7 @@ ElfsightEmbedSDK.displayPanel(container, callbacks, options);
 Available values for `size` option:
 
  * `'big'`
-
  * `'medium'`
-
  * `'small'`
 
 </details>
@@ -405,33 +378,22 @@ ElfsightEmbedSDK.displayButton(container, callback, options);
 Available values for `type` option:
 
  * `'create'`
-
  * `'edit'`
-
  * `'remove'`
-
 
 Available values for `size` option:
 
  * `'big'`
-
  * `'medium'`
-
  * `'small'`
-
 
 Available values for `icon` option:
 
  * `'glyph'`
-
  * `'plus'`
-
  * `'edit'`
-
  * `'search'`
-
  * `'close'`
-
  * `'trash'`
 
 </details>
@@ -504,21 +466,12 @@ Use the API endpoints to create your own components or interface to interact wit
 Use this endpoint to get the list of available apps with the following data:
 
  * `name`
-
  * `alias`
-
  * `caption`
-
  * `public_id`
-
  * `icon`
-
- * `banner`
-
  * `category_id`
-
  * `tags`
-
  * `promo_url`
 
 <details>

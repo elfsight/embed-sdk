@@ -8,10 +8,6 @@
 
     <script src="embed-sdk.umd.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
     <script>
         ElfsightEmbedSDK.setReferral('460635ba-35ef-4934-96e3-ae6de81a2037');
         ElfsightEmbedSDK.setAffiseParams('123', 3);
@@ -389,7 +385,7 @@ ElfsightEmbedSDK.displayCard(container, handler, options)</code></pre>
                 };
 
                 ElfsightEmbedSDK.displayCard(document.getElementById('test-card-1'), addHandler, Object.assign({}, cardOptions, {
-                    appAlias: 'instashow',
+                    appAlias: 'instagram-feed',
                     buttonText: 'Set widget',
                     promo: 'demo',
                     promoReferral: 'test'
@@ -422,7 +418,8 @@ ElfsightEmbedSDK.displayCard(container, options)</code></pre>
                  */
 
                 const previewOptions = {
-                    appAlias: 'instashow',
+                    appAlias: 'instagram-feed',
+                    // appAlias: 'instashow', // @TODO support legacy aliases
                     height: '800px',
                     ref: '460635ba-35ef-4934-96e3-ae6de81a2037',
                     hideTemplates: true,

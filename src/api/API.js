@@ -1,11 +1,11 @@
 import { Storage } from './Storage';
 
 const ENDPOINTS = {
-  'applications.get': ['get', '/api/v1/public/applications/'],
-  'categories.get': ['get', '/api/v1/public/categories/']
+  'applications.get': ['get', '/sdk/get-apps/'],
+  'categories.get': ['get', '/sdk/get-categories/']
 };
 
-const BASE_URL = 'https://apps.elfsight.com';
+const BASE_URL = 'https://core.service.elfsight.com';
 
 const CATEGORY_ALL = {
   id: 0,

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactSVG } from 'react-svg'
 import { Button } from '../Button';
 
 const BASE_URL = 'https://apps.elfsight.com';
@@ -22,7 +23,7 @@ export function Card({
     buttonText = 'ADD',
   } = options;
 
-  const iconUrl = (() => (icon.includes('https://') ? icon : `${BASE_URL}${icon}`))();
+  const isIconUrl = icon.includes('https://');
 
   return (
     <CardComponent
@@ -37,10 +38,12 @@ export function Card({
       href={promo_url}
     >
       <CardContent>
-        <CardIcon
-          alt={name}
-          src={iconUrl}
-        />
+        {isIconUrl
+          ? <CardIcon
+            alt={name}
+            src={icon}
+          />
+          : <CardIconSVG src={icon} />}
 
         <div>
           <CardTitle>{name}</CardTitle>
@@ -63,13 +66,19 @@ export function Card({
   );
 }
 
+const CardIconSVG = styled(ReactSVG)`
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  margin-right: 16px;
+  fill: #f93262;
+`;
 
 const CardIcon = styled.img`
   width: 44px;
   height: 44px;
   flex: 0 0 44px;
   margin-right: 16px;
-  font-size: 10px;
 `;
 
 const CardTitle = styled.div`
