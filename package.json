@@ -12,8 +12,8 @@
 	],
 	"scripts": {
 		"clean": "rimraf lib",
-		"build:umd": "WEBPACK_MINIMIZE=1 webpack --mode production",
-		"build:cjs": "WEBPACK_MINIMIZE=1 WEBPACK_TARGET=cjs webpack --mode production",
+		"build:umd": "NODE_OPTIONS=--openssl-legacy-provider WEBPACK_MINIMIZE=1 webpack --mode production",
+		"build:cjs": "NODE_OPTIONS=--openssl-legacy-provider WEBPACK_MINIMIZE=1 WEBPACK_TARGET=cjs webpack --mode production",
 		"dev": "NODE_OPTIONS=--openssl-legacy-provider WEBPACK_TARGET=umd webpack-dev-server --mode development",
 		"build": "npm run build:umd && npm run build:cjs",
 		"production": "npm run build",

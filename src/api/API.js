@@ -1,7 +1,7 @@
 import { Storage } from './Storage';
 
 const ENDPOINTS = {
-  'applications.get': ['get', '/sdk/get-apps/'],
+  'applications.get': ['get', '/sdk/v2/get-apps/'],
   'categories.get': ['get', '/sdk/get-categories/']
 };
 
